@@ -5,6 +5,8 @@ add_library(simdmonte_lib
     pricer_sisd.cpp
     pricer_simd.cpp
     pricer.cpp
+    simdhelper.cpp
+    simdhelper_european.cpp
 )
 
 target_include_directories(simdmonte_lib

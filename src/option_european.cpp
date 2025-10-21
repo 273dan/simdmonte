@@ -1,5 +1,7 @@
 #include "option_european.h"
 #include "option.h"
+#include "simdhelper_european.h"
+#include <cmath>
 
 using EO = EuropeanOption;
 EO::EuropeanOption(double K, double T, OptionType type)
@@ -15,4 +17,8 @@ double EO::payoff(const std::vector<double>& path) const  {
     return std::max(strike - final_price, 0.0);
   }
 
+
+}
+std::unique_ptr<ISimdHelper> EO::get_simd_helper() const {
+  return std::make_unique<EuropeanSimdHelper>(strike, type);
 }

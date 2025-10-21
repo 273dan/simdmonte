@@ -1,5 +1,6 @@
 #include "market_data.h"
 #include "option_european.h"
+#include "pricer_simd.h"
 #include "pricer_sisd.h"
 
 #include <memory>
@@ -17,7 +18,7 @@ int main() {
     std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Call);
 
   std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSISD>(n_sims, n_steps);
+    std::make_unique<MCPricerSIMD>(n_sims, n_steps);
 
   double price = pricer->price(*option, market);
 

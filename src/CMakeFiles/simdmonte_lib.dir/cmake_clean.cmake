@@ -11,6 +11,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o.d"
   "CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o"
   "CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o.d"
+  "CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o"
+  "CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o.d"
+  "CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o"
+  "CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o.d"
   "libsimdmonte_lib.a"
   "libsimdmonte_lib.pdb"
 )

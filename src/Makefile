@@ -329,6 +329,54 @@ pricer_sisd.cpp.s:
 	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.s
 .PHONY : pricer_sisd.cpp.s
 
+simdhelper.o: simdhelper.cpp.o
+.PHONY : simdhelper.o
+
+# target to build an object file
+simdhelper.cpp.o:
+	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o
+.PHONY : simdhelper.cpp.o
+
+simdhelper.i: simdhelper.cpp.i
+.PHONY : simdhelper.i
+
+# target to preprocess a source file
+simdhelper.cpp.i:
+	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.i
+.PHONY : simdhelper.cpp.i
+
+simdhelper.s: simdhelper.cpp.s
+.PHONY : simdhelper.s
+
+# target to generate assembly for a file
+simdhelper.cpp.s:
+	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.s
+.PHONY : simdhelper.cpp.s
+
+simdhelper_european.o: simdhelper_european.cpp.o
+.PHONY : simdhelper_european.o
+
+# target to build an object file
+simdhelper_european.cpp.o:
+	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o
+.PHONY : simdhelper_european.cpp.o
+
+simdhelper_european.i: simdhelper_european.cpp.i
+.PHONY : simdhelper_european.i
+
+# target to preprocess a source file
+simdhelper_european.cpp.i:
+	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.i
+.PHONY : simdhelper_european.cpp.i
+
+simdhelper_european.s: simdhelper_european.cpp.s
+.PHONY : simdhelper_european.s
+
+# target to generate assembly for a file
+simdhelper_european.cpp.s:
+	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.s
+.PHONY : simdhelper_european.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -361,6 +409,12 @@ help:
 	@echo "... pricer_sisd.o"
 	@echo "... pricer_sisd.i"
 	@echo "... pricer_sisd.s"
+	@echo "... simdhelper.o"
+	@echo "... simdhelper.i"
+	@echo "... simdhelper.s"
+	@echo "... simdhelper_european.o"
+	@echo "... simdhelper_european.i"
+	@echo "... simdhelper_european.s"
 .PHONY : help
 
 

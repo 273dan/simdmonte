@@ -6,3 +6,5 @@ public:
   virtual ~IPricer() = 0;
   virtual double price(const Option& option, const MarketData& market) const = 0;
 };
+
+

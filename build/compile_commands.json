@@ -60,6 +60,18 @@
   "output": "src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.o"
 },
 {
+  "directory": "/home/dan/Dev/simdmonte/build/src",
+  "command": "/usr/bin/c++  -I/home/dan/Dev/simdmonte/src/../include -std=gnu++17 -mavx2 -o CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o -c /home/dan/Dev/simdmonte/src/simdhelper.cpp",
+  "file": "/home/dan/Dev/simdmonte/src/simdhelper.cpp",
+  "output": "src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o"
+},
+{
+  "directory": "/home/dan/Dev/simdmonte/build/src",
+  "command": "/usr/bin/c++  -I/home/dan/Dev/simdmonte/src/../include -std=gnu++17 -mavx2 -o CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o -c /home/dan/Dev/simdmonte/src/simdhelper_european.cpp",
+  "file": "/home/dan/Dev/simdmonte/src/simdhelper_european.cpp",
+  "output": "src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o"
+},
+{
   "directory": "/home/dan/Dev/simdmonte/build/app",
   "command": "/usr/bin/c++  -I/home/dan/Dev/simdmonte/src/../include -std=gnu++17 -o CMakeFiles/main.dir/main.cpp.o -c /home/dan/Dev/simdmonte/app/main.cpp",
   "file": "/home/dan/Dev/simdmonte/app/main.cpp",

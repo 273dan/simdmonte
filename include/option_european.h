@@ -8,4 +8,5 @@ public:
   OptionType type;
   EuropeanOption(double K, double T, OptionType type);
   virtual double payoff(const std::vector<double>& path) const override;
+  virtual std::unique_ptr<ISimdHelper> get_simd_helper() const override;
 };
