@@ -1,20 +1,20 @@
-#include "option_european.h"
-#include "option.h"
-#include "simdhelper_european.h"
+#include "simdmonte/option/option_european.h"
+#include "simdmonte/option/option.h"
+#include "simdmonte/simdhelper/simdhelper_european.h"
 #include <cmath>
 
 using EO = EuropeanOption;
-EO::EuropeanOption(double K, double T, OptionType type)
+EO::EuropeanOption(float K, float T, OptionType type)
     : Option(K, T), type(type){};
 
-double EO::payoff(const std::vector<double>& path) const  {
-  double final_price = path.back();
+float EO::payoff(const std::vector<float>& path) const  {
+  float final_price = path.back();
   if(type == OptionType::Call) {
-    return std::max(final_price - strike, 0.0);
+    return std::max(final_price - strike, 0.0f);
 
   }
   else {
-    return std::max(strike - final_price, 0.0);
+    return std::max(strike - final_price, 0.0f);
   }
 
 

@@ -4,8 +4,8 @@
 class ISimdHelper {
 public:
   virtual ~ISimdHelper() = 0;
-  virtual void update(const __m256d& prices) = 0;
-  virtual __m256d payoffs() = 0;
+  virtual void update(const __m256& prices) = 0;
+  virtual __m256 payoffs() = 0;
 
 };
 

@@ -3,13 +3,13 @@
 
 app/CMakeFiles/main.dir/main.cpp.o
  /home/dan/Dev/simdmonte/app/main.cpp
- /home/dan/Dev/simdmonte/include/market_data.h
- /home/dan/Dev/simdmonte/include/option.h
- /home/dan/Dev/simdmonte/include/option_european.h
- /home/dan/Dev/simdmonte/include/pricer.h
- /home/dan/Dev/simdmonte/include/pricer_simd.h
- /home/dan/Dev/simdmonte/include/pricer_sisd.h
- /home/dan/Dev/simdmonte/include/simdhelper.h
+ /home/dan/Dev/simdmonte/include/simdmonte/misc/market_data.h
+ /home/dan/Dev/simdmonte/include/simdmonte/option/option.h
+ /home/dan/Dev/simdmonte/include/simdmonte/option/option_european.h
+ /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer.h
+ /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer_simd.h
+ /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer_sisd.h
+ /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h
  /usr/include/asm-generic/errno.h

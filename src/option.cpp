@@ -1,5 +1,5 @@
 #include <vector>
-#include "option.h"
+#include "simdmonte/option/option.h"
 
 Option::~Option() = default;
-Option::Option(double K, double T) : strike(K), expiry(T) {};
+Option::Option(float K, float T) : strike(K), expiry(T) {};

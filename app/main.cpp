@@ -1,7 +1,7 @@
-#include "market_data.h"
-#include "option_european.h"
-#include "pricer_simd.h"
-#include "pricer_sisd.h"
+#include "simdmonte/misc/market_data.h"
+#include "simdmonte/option/option_european.h"
+#include "simdmonte/pricer/pricer_simd.h"
+#include "simdmonte/pricer/pricer_sisd.h"
 
 #include <memory>
 #include <iostream>
@@ -11,7 +11,7 @@ int main() {
   double strike = 100.0;
   double expiry = 1.0;
 
-  int n_sims = 1000000;
+  int n_sims = 500000;
   int n_steps = 252;
 
   std::unique_ptr<Option> option =

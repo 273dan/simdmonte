@@ -1,4 +1,4 @@
-#include "pricer_simd.h"
+#include "simdmonte/pricer/pricer_simd.h"
 #include <cmath>
 #include <immintrin.h>
 #include <iostream>
@@ -9,79 +9,83 @@ MCPricerSIMD::MCPricerSIMD(int sims, int steps)
   : n_sims(sims), n_steps(steps), dist_(0.0, 1.0), gen_(std::random_device{}())  {};
 
 
-double MCPricerSIMD::price(const Option& option, const MarketData& market) const {
+float MCPricerSIMD::price(const Option& option, const MarketData& market) const {
   // Hard code log prices for european option/GBM for now
-  double dt = option.expiry / static_cast<double>(n_steps);
-  double drift = (market.risk_free_rate - (0.5 * market.volatility * market.volatility)) * dt;
-  double vol_dt = std::sqrt(dt) * market.volatility;
-  double sum_payoffs = 0.0;
+  float dt = option.expiry / static_cast<float>(n_steps);
+  float drift = (market.risk_free_rate - (0.5 * market.volatility * market.volatility)) * dt;
+  float vol_dt = std::sqrt(dt) * market.volatility;
+  float sum_payoffs = 0.0;
 
-  double log_drift = std::log(drift);
-  double log_spot = std::log(market.spot);
+  float log_drift = std::log(drift);
+  float log_spot = std::log(market.spot);
 
-  __m256d vols = _mm256_set1_pd(vol_dt);
-  __m256d drifts = _mm256_set1_pd(drift);
+  __m256 vols = _mm256_set1_ps(vol_dt);
+  __m256 drifts = _mm256_set1_ps(drift);
 
 
 
-  for(int i = 0; i < n_sims; i += 4) {
+  for(int i = 0; i < n_sims; i += 8) {
     std::unique_ptr<ISimdHelper> helper = option.get_simd_helper();
-    __m256d current_log_prices = _mm256_set1_pd(log_spot);
+    __m256 current_log_prices = _mm256_set1_ps(log_spot);
     helper->update(current_log_prices);
     for(int j = 0; j < n_steps; j++) {
-      __m256d Z = packed_double_normals();
-      __m256d shocks = _mm256_mul_pd(vols, Z);
-      current_log_prices = _mm256_add_pd(current_log_prices, shocks);
-      current_log_prices = _mm256_add_pd(current_log_prices, drifts);
+      __m256 Z = packed_float_normals();
+      __m256 shocks = _mm256_mul_ps(vols, Z);
+      current_log_prices = _mm256_add_ps(current_log_prices, shocks);
+      current_log_prices = _mm256_add_ps(current_log_prices, drifts);
       helper->update(current_log_prices);
     }
 
     // may need to make european simd helper natrually handle logs for exotic support
 
-    double log_final_prices[4];
-    double final_prices[4];
+    float log_final_prices[8];
+    float final_prices[8];
 
-    _mm256_storeu_pd(log_final_prices, current_log_prices);
+    _mm256_storeu_ps(log_final_prices, current_log_prices);
 
-    for(int i = 0; i < 4; i++){
+    for(int i = 0; i < 8; i++){
       final_prices[i] = std::exp(log_final_prices[i]);
     }
 
-    __m256d final_prices_simd = _mm256_loadu_pd(final_prices);
+    __m256 final_prices_simd = _mm256_loadu_ps(final_prices);
 
     // this should be optimised away
     
 
     helper->update(final_prices_simd);
-    __m256d payoffs_simd = helper->payoffs();
+    __m256 payoffs_simd = helper->payoffs();
 
-    double payoffs[4];
+    float payoffs[8];
 
 
-    _mm256_storeu_pd(payoffs, payoffs_simd);
+    _mm256_storeu_ps(payoffs, payoffs_simd);
 
-    sum_payoffs += payoffs[0] + payoffs[1] + payoffs[2] + payoffs[3];
+    sum_payoffs += payoffs[0] + payoffs[1] + payoffs[2] + payoffs[3] + payoffs[4] + payoffs[5] + payoffs[6] + payoffs[7];
     if(i % 10000 == 0) {
       std::cout << "Simulation: " << i << " / " << n_sims << "\n";
     }
   }
 
-  double average_payoff = sum_payoffs / static_cast<double>(n_sims);
-  double discounted = average_payoff * std::exp(-market.risk_free_rate * option.expiry);
+  float average_payoff = sum_payoffs / static_cast<float>(n_sims);
+  float discounted = average_payoff * std::exp(-market.risk_free_rate * option.expiry);
   return discounted;
 
 
 }
 
 
-__m256d MCPricerSIMD::packed_double_normals() const {
-  double z1 = dist_(gen_);
-  double z2 = dist_(gen_);
-  double z3 = dist_(gen_);
-  double z4 = dist_(gen_);
+__m256 MCPricerSIMD::packed_float_normals() const {
+  float z1 = dist_(gen_);
+  float z2 = dist_(gen_);
+  float z3 = dist_(gen_);
+  float z4 = dist_(gen_);
+  float z5 = dist_(gen_);
+  float z6 = dist_(gen_);
+  float z7 = dist_(gen_);
+  float z8 = dist_(gen_);
 
 
-  return _mm256_set_pd(z1, z2, z3, z4);
+  return _mm256_set_ps(z1, z2, z3, z4, z5, z6, z7, z8);
 }
 
 

@@ -7,8 +7,8 @@ src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.o
 
 src/CMakeFiles/simdmonte_lib.dir/option.cpp.o
  /home/dan/Dev/simdmonte/src/option.cpp
- /home/dan/Dev/simdmonte/include/option.h
- /home/dan/Dev/simdmonte/include/simdhelper.h
+ /home/dan/Dev/simdmonte/include/simdmonte/option/option.h
+ /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h
  /usr/include/alloca.h
  /usr/include/c++/13/backward/auto_ptr.h
  /usr/include/c++/13/backward/binders.h
@@ -261,10 +261,10 @@ src/CMakeFiles/simdmonte_lib.dir/option.cpp.o
 
 src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.o
  /home/dan/Dev/simdmonte/src/option_european.cpp
- /home/dan/Dev/simdmonte/include/option.h
- /home/dan/Dev/simdmonte/include/option_european.h
- /home/dan/Dev/simdmonte/include/simdhelper.h
- /home/dan/Dev/simdmonte/include/simdhelper_european.h
+ /home/dan/Dev/simdmonte/include/simdmonte/option/option.h
+ /home/dan/Dev/simdmonte/include/simdmonte/option/option_european.h
+ /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h
+ /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper_european.h
  /usr/include/alloca.h
  /usr/include/c++/13/backward/auto_ptr.h
  /usr/include/c++/13/backward/binders.h
@@ -542,10 +542,10 @@ src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.o
 
 src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.o
  /home/dan/Dev/simdmonte/src/pricer.cpp
- /home/dan/Dev/simdmonte/include/market_data.h
- /home/dan/Dev/simdmonte/include/option.h
- /home/dan/Dev/simdmonte/include/pricer.h
- /home/dan/Dev/simdmonte/include/simdhelper.h
+ /home/dan/Dev/simdmonte/include/simdmonte/misc/market_data.h
+ /home/dan/Dev/simdmonte/include/simdmonte/option/option.h
+ /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer.h
+ /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h
  /usr/include/alloca.h
  /usr/include/c++/13/backward/auto_ptr.h
  /usr/include/c++/13/backward/binders.h
@@ -798,11 +798,11 @@ src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.o
 
 src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o
  /home/dan/Dev/simdmonte/src/pricer_simd.cpp
- /home/dan/Dev/simdmonte/include/market_data.h
- /home/dan/Dev/simdmonte/include/option.h
- /home/dan/Dev/simdmonte/include/pricer.h
- /home/dan/Dev/simdmonte/include/pricer_simd.h
- /home/dan/Dev/simdmonte/include/simdhelper.h
+ /home/dan/Dev/simdmonte/include/simdmonte/misc/market_data.h
+ /home/dan/Dev/simdmonte/include/simdmonte/option/option.h
+ /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer.h
+ /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer_simd.h
+ /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h
  /usr/include/asm-generic/errno.h
@@ -1145,11 +1145,11 @@ src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o
 
 src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o
  /home/dan/Dev/simdmonte/src/pricer_sisd.cpp
- /home/dan/Dev/simdmonte/include/market_data.h
- /home/dan/Dev/simdmonte/include/option.h
- /home/dan/Dev/simdmonte/include/pricer.h
- /home/dan/Dev/simdmonte/include/pricer_sisd.h
- /home/dan/Dev/simdmonte/include/simdhelper.h
+ /home/dan/Dev/simdmonte/include/simdmonte/misc/market_data.h
+ /home/dan/Dev/simdmonte/include/simdmonte/option/option.h
+ /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer.h
+ /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer_sisd.h
+ /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h
  /usr/include/asm-generic/errno.h
@@ -1492,7 +1492,7 @@ src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o
 
 src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o
  /home/dan/Dev/simdmonte/src/simdhelper.cpp
- /home/dan/Dev/simdmonte/include/simdhelper.h
+ /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h
  /usr/include/alloca.h
  /usr/include/c++/13/bits/std_abs.h
  /usr/include/c++/13/cstdlib
@@ -1643,10 +1643,10 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o
 
 src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o
  /home/dan/Dev/simdmonte/src/simdhelper_european.cpp
- /home/dan/Dev/simdmonte/include/option.h
- /home/dan/Dev/simdmonte/include/option_european.h
- /home/dan/Dev/simdmonte/include/simdhelper.h
- /home/dan/Dev/simdmonte/include/simdhelper_european.h
+ /home/dan/Dev/simdmonte/include/simdmonte/option/option.h
+ /home/dan/Dev/simdmonte/include/simdmonte/option/option_european.h
+ /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h
+ /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper_european.h
  /usr/include/alloca.h
  /usr/include/c++/13/backward/auto_ptr.h
  /usr/include/c++/13/backward/binders.h

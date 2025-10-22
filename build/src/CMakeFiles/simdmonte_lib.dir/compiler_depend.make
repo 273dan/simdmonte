@@ -5,8 +5,8 @@ src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.o: /home/dan/Dev/simdmonte/src/
   /usr/include/stdc-predef.h
 
 src/CMakeFiles/simdmonte_lib.dir/option.cpp.o: /home/dan/Dev/simdmonte/src/option.cpp \
-  /home/dan/Dev/simdmonte/include/option.h \
-  /home/dan/Dev/simdmonte/include/simdhelper.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/option/option.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h \
   /usr/include/alloca.h \
   /usr/include/c++/13/backward/auto_ptr.h \
   /usr/include/c++/13/backward/binders.h \
@@ -258,10 +258,10 @@ src/CMakeFiles/simdmonte_lib.dir/option.cpp.o: /home/dan/Dev/simdmonte/src/optio
   /usr/lib/gcc/x86_64-linux-gnu/13/include/xtestintrin.h
 
 src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.o: /home/dan/Dev/simdmonte/src/option_european.cpp \
-  /home/dan/Dev/simdmonte/include/option.h \
-  /home/dan/Dev/simdmonte/include/option_european.h \
-  /home/dan/Dev/simdmonte/include/simdhelper.h \
-  /home/dan/Dev/simdmonte/include/simdhelper_european.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/option/option.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/option/option_european.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper_european.h \
   /usr/include/alloca.h \
   /usr/include/c++/13/backward/auto_ptr.h \
   /usr/include/c++/13/backward/binders.h \
@@ -538,10 +538,10 @@ src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.o: /home/dan/Dev/simdmonte/
   /usr/lib/gcc/x86_64-linux-gnu/13/include/xtestintrin.h
 
 src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.o: /home/dan/Dev/simdmonte/src/pricer.cpp \
-  /home/dan/Dev/simdmonte/include/market_data.h \
-  /home/dan/Dev/simdmonte/include/option.h \
-  /home/dan/Dev/simdmonte/include/pricer.h \
-  /home/dan/Dev/simdmonte/include/simdhelper.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/misc/market_data.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/option/option.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h \
   /usr/include/alloca.h \
   /usr/include/c++/13/backward/auto_ptr.h \
   /usr/include/c++/13/backward/binders.h \
@@ -793,11 +793,11 @@ src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.o: /home/dan/Dev/simdmonte/src/price
   /usr/lib/gcc/x86_64-linux-gnu/13/include/xtestintrin.h
 
 src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o: /home/dan/Dev/simdmonte/src/pricer_simd.cpp \
-  /home/dan/Dev/simdmonte/include/market_data.h \
-  /home/dan/Dev/simdmonte/include/option.h \
-  /home/dan/Dev/simdmonte/include/pricer.h \
-  /home/dan/Dev/simdmonte/include/pricer_simd.h \
-  /home/dan/Dev/simdmonte/include/simdhelper.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/misc/market_data.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/option/option.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer_simd.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -1139,11 +1139,11 @@ src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o: /home/dan/Dev/simdmonte/src/
   /usr/lib/gcc/x86_64-linux-gnu/13/include/xtestintrin.h
 
 src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o: /home/dan/Dev/simdmonte/src/pricer_sisd.cpp \
-  /home/dan/Dev/simdmonte/include/market_data.h \
-  /home/dan/Dev/simdmonte/include/option.h \
-  /home/dan/Dev/simdmonte/include/pricer.h \
-  /home/dan/Dev/simdmonte/include/pricer_sisd.h \
-  /home/dan/Dev/simdmonte/include/simdhelper.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/misc/market_data.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/option/option.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer_sisd.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -1485,7 +1485,7 @@ src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o: /home/dan/Dev/simdmonte/src/
   /usr/lib/gcc/x86_64-linux-gnu/13/include/xtestintrin.h
 
 src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o: /home/dan/Dev/simdmonte/src/simdhelper.cpp \
-  /home/dan/Dev/simdmonte/include/simdhelper.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h \
   /usr/include/alloca.h \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/cstdlib \
@@ -1635,10 +1635,10 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o: /home/dan/Dev/simdmonte/src/s
   /usr/lib/gcc/x86_64-linux-gnu/13/include/xtestintrin.h
 
 src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmonte/src/simdhelper_european.cpp \
-  /home/dan/Dev/simdmonte/include/option.h \
-  /home/dan/Dev/simdmonte/include/option_european.h \
-  /home/dan/Dev/simdmonte/include/simdhelper.h \
-  /home/dan/Dev/simdmonte/include/simdhelper_european.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/option/option.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/option/option_european.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h \
+  /home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper_european.h \
   /usr/include/alloca.h \
   /usr/include/c++/13/backward/auto_ptr.h \
   /usr/include/c++/13/backward/binders.h \
@@ -1938,8 +1938,6 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/include/c++/13/cstdio:
 
-/usr/include/c++/13/cstdint:
-
 /usr/include/c++/13/clocale:
 
 /usr/include/c++/13/cerrno:
@@ -1982,13 +1980,11 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/include/c++/13/bits/basic_ios.h:
 
-/home/dan/Dev/simdmonte/include/pricer_simd.h:
+/home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer_simd.h:
 
 /home/dan/Dev/simdmonte/src/pricer_simd.cpp:
 
-/home/dan/Dev/simdmonte/include/pricer.h:
-
-/home/dan/Dev/simdmonte/include/market_data.h:
+/home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer.h:
 
 /home/dan/Dev/simdmonte/src/pricer.cpp:
 
@@ -2030,12 +2026,6 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
-/usr/include/c++/13/bits/locale_classes.h:
-
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/amxtileintrin.h:
-
 /usr/include/c++/13/string:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
@@ -2043,6 +2033,8 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 /usr/lib/gcc/x86_64-linux-gnu/13/include/fxsrintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/raointintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vnnivlintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/xtestintrin.h:
 
@@ -2060,8 +2052,6 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
-/home/dan/Dev/simdmonte/include/pricer_sisd.h:
-
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
 
 /home/dan/Dev/simdmonte/src/option.cpp:
@@ -2073,6 +2063,10 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/time.h:
 
 /usr/include/c++/13/bits/memoryfwd.h:
 
@@ -2152,15 +2146,7 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/include/c++/13/cstdlib:
 
-/usr/include/c++/13/bits/stl_raw_storage_iter.h:
-
-/usr/include/c++/13/streambuf:
-
-/usr/include/c++/13/bits/memory_resource.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/pkuintrin.h:
-
-/usr/include/c++/13/bits/invoke.h:
+/home/dan/Dev/simdmonte/include/simdmonte/pricer/pricer_sisd.h:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
@@ -2172,6 +2158,10 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/include/c++/13/bits/concept_check.h:
 
+/usr/include/x86_64-linux-gnu/bits/stdint-least.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/xmmintrin.h:
+
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
 /usr/include/c++/13/bits/shared_ptr.h:
@@ -2179,10 +2169,6 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 /usr/include/locale.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vpopcntdqintrin.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-least.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/xmmintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
@@ -2216,15 +2202,7 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/emmintrin.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/gfniintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/tmmintrin.h:
-
-/usr/include/c++/13/bits/refwrap.h:
-
 /usr/include/alloca.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
 /usr/include/c++/13/bits/exception.h:
 
@@ -2234,19 +2212,47 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/include/stdc-predef.h:
 
+/home/dan/Dev/simdmonte/include/simdmonte/misc/market_data.h:
+
+/usr/include/c++/13/bits/invoke.h:
+
+/usr/include/c++/13/streambuf:
+
+/usr/include/c++/13/bits/memory_resource.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/pkuintrin.h:
+
+/usr/include/c++/13/bits/stl_raw_storage_iter.h:
+
+/usr/include/c++/13/bits/locale_classes.h:
+
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/amxtileintrin.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper.h:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avxifmaintrin.h:
+
 /usr/include/c++/13/bits/hash_bytes.h:
-
-/home/dan/Dev/simdmonte/src/market_data.cpp:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/pmmintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/xsavecintrin.h:
 
-/home/dan/Dev/simdmonte/include/option.h:
+/usr/lib/gcc/x86_64-linux-gnu/13/include/gfniintrin.h:
 
-/usr/include/c++/13/tuple:
+/usr/lib/gcc/x86_64-linux-gnu/13/include/pmmintrin.h:
 
-/usr/include/c++/13/bits/nested_exception.h:
+/home/dan/Dev/simdmonte/src/market_data.cpp:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/tmmintrin.h:
+
+/usr/include/c++/13/bits/refwrap.h:
+
+/home/dan/Dev/simdmonte/include/simdmonte/option/option.h:
 
 /usr/include/c++/13/bits/exception_ptr.h:
 
@@ -2254,17 +2260,9 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/tsxldtrkintrin.h:
 
-/usr/include/c++/13/type_traits:
+/usr/include/c++/13/tuple:
 
-/usr/include/x86_64-linux-gnu/sys/single_threaded.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avxneconvertintrin.h:
-
-/usr/include/c++/13/bits/move.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/clzerointrin.h:
-
-/usr/include/c++/13/bits/stl_function.h:
+/usr/include/c++/13/bits/nested_exception.h:
 
 /usr/include/c++/13/backward/auto_ptr.h:
 
@@ -2275,18 +2273,6 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 /usr/include/c++/13/bits/allocator.h:
 
 /usr/include/c++/13/bits/functional_hash.h:
-
-/usr/include/time.h:
-
-/usr/include/x86_64-linux-gnu/bits/setjmp.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vnnivlintrin.h:
-
-/home/dan/Dev/simdmonte/include/simdhelper.h:
-
-/usr/include/c++/13/tr1/beta_function.tcc:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/hresetintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
@@ -2318,13 +2304,25 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/include/c++/13/ext/aligned_buffer.h:
 
-/usr/include/c++/13/bits/utility.h:
+/usr/include/c++/13/type_traits:
 
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+/usr/include/x86_64-linux-gnu/sys/single_threaded.h:
+
+/usr/include/c++/13/bits/allocated_ptr.h:
 
 /usr/include/c++/13/bit:
 
-/usr/include/c++/13/bits/allocated_ptr.h:
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avxneconvertintrin.h:
+
+/usr/include/c++/13/bits/move.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/clzerointrin.h:
+
+/usr/include/c++/13/bits/stl_function.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+/usr/include/c++/13/bits/utility.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/prfchwintrin.h:
 
@@ -2426,10 +2424,6 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/typesizes.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avxifmaintrin.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512bwintrin.h:
 
 /usr/include/c++/13/bits/exception_defines.h:
@@ -2442,13 +2436,11 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512fp16intrin.h:
 
+/home/dan/Dev/simdmonte/include/simdmonte/option/option_european.h:
+
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/sgxintrin.h:
-
-/usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
@@ -2526,6 +2518,14 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/enqcmdintrin.h:
 
+/usr/include/c++/13/tr1/beta_function.tcc:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/hresetintrin.h:
+
+/usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/sgxintrin.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/ia32intrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/keylockerintrin.h:
@@ -2539,8 +2539,6 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 /usr/include/c++/13/bits/stl_iterator_base_types.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/movdirintrin.h:
-
-/home/dan/Dev/simdmonte/include/simdhelper_european.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/f16cintrin.h:
 
@@ -2592,7 +2590,9 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: /home/dan/Dev/simdmo
 
 /home/dan/Dev/simdmonte/src/option_european.cpp:
 
-/home/dan/Dev/simdmonte/include/option_european.h:
+/usr/include/c++/13/cstdint:
+
+/home/dan/Dev/simdmonte/include/simdmonte/simdhelper/simdhelper_european.h:
 
 /usr/include/c++/13/bits/streambuf.tcc:
 
