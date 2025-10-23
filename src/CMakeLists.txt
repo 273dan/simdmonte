@@ -1,5 +1,4 @@
 add_library(simdmonte_lib
-    market_data.cpp
     option.cpp
     option_european.cpp
     pricer_sisd.cpp
@@ -7,6 +6,8 @@ add_library(simdmonte_lib
     pricer.cpp
     simdhelper.cpp
     simdhelper_european.cpp
+    rnghelper.cpp
+    utils.cpp
 )
 
 target_include_directories(simdmonte_lib

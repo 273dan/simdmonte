@@ -185,30 +185,6 @@ simdmonte_lib/fast:
 	cd /home/dan/Dev/simdmonte/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/build
 .PHONY : simdmonte_lib/fast
 
-market_data.o: market_data.cpp.o
-.PHONY : market_data.o
-
-# target to build an object file
-market_data.cpp.o:
-	cd /home/dan/Dev/simdmonte/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.o
-.PHONY : market_data.cpp.o
-
-market_data.i: market_data.cpp.i
-.PHONY : market_data.i
-
-# target to preprocess a source file
-market_data.cpp.i:
-	cd /home/dan/Dev/simdmonte/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.i
-.PHONY : market_data.cpp.i
-
-market_data.s: market_data.cpp.s
-.PHONY : market_data.s
-
-# target to generate assembly for a file
-market_data.cpp.s:
-	cd /home/dan/Dev/simdmonte/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.s
-.PHONY : market_data.cpp.s
-
 option.o: option.cpp.o
 .PHONY : option.o
 
@@ -329,6 +305,30 @@ pricer_sisd.cpp.s:
 	cd /home/dan/Dev/simdmonte/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.s
 .PHONY : pricer_sisd.cpp.s
 
+rnghelper.o: rnghelper.cpp.o
+.PHONY : rnghelper.o
+
+# target to build an object file
+rnghelper.cpp.o:
+	cd /home/dan/Dev/simdmonte/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.o
+.PHONY : rnghelper.cpp.o
+
+rnghelper.i: rnghelper.cpp.i
+.PHONY : rnghelper.i
+
+# target to preprocess a source file
+rnghelper.cpp.i:
+	cd /home/dan/Dev/simdmonte/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.i
+.PHONY : rnghelper.cpp.i
+
+rnghelper.s: rnghelper.cpp.s
+.PHONY : rnghelper.s
+
+# target to generate assembly for a file
+rnghelper.cpp.s:
+	cd /home/dan/Dev/simdmonte/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.s
+.PHONY : rnghelper.cpp.s
+
 simdhelper.o: simdhelper.cpp.o
 .PHONY : simdhelper.o
 
@@ -377,6 +377,30 @@ simdhelper_european.cpp.s:
 	cd /home/dan/Dev/simdmonte/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.s
 .PHONY : simdhelper_european.cpp.s
 
+utils.o: utils.cpp.o
+.PHONY : utils.o
+
+# target to build an object file
+utils.cpp.o:
+	cd /home/dan/Dev/simdmonte/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/utils.cpp.o
+.PHONY : utils.cpp.o
+
+utils.i: utils.cpp.i
+.PHONY : utils.i
+
+# target to preprocess a source file
+utils.cpp.i:
+	cd /home/dan/Dev/simdmonte/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/utils.cpp.i
+.PHONY : utils.cpp.i
+
+utils.s: utils.cpp.s
+.PHONY : utils.s
+
+# target to generate assembly for a file
+utils.cpp.s:
+	cd /home/dan/Dev/simdmonte/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/utils.cpp.s
+.PHONY : utils.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -391,9 +415,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... simdmonte_lib"
-	@echo "... market_data.o"
-	@echo "... market_data.i"
-	@echo "... market_data.s"
 	@echo "... option.o"
 	@echo "... option.i"
 	@echo "... option.s"
@@ -409,12 +430,18 @@ help:
 	@echo "... pricer_sisd.o"
 	@echo "... pricer_sisd.i"
 	@echo "... pricer_sisd.s"
+	@echo "... rnghelper.o"
+	@echo "... rnghelper.i"
+	@echo "... rnghelper.s"
 	@echo "... simdhelper.o"
 	@echo "... simdhelper.i"
 	@echo "... simdhelper.s"
 	@echo "... simdhelper_european.o"
 	@echo "... simdhelper_european.i"
 	@echo "... simdhelper_european.s"
+	@echo "... utils.o"
+	@echo "... utils.i"
+	@echo "... utils.s"
 .PHONY : help
 
 

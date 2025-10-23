@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/dan/Dev/simdmonte/src/../include -isystem /home/dan/Dev/simdmonte/build/_deps/googletest-src/googletest/include -isystem /home/dan/Dev/simdmonte/build/_deps/googletest-src/googletest
 
-CXX_FLAGS = -std=gnu++17
+CXX_FLAGS = -std=gnu++17 -mavx2
 

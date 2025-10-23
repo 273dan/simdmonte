@@ -1,0 +1,6 @@
+RngTests.UniformRange 5 0.0113551
+RngTests.UniformSeeding 2 0.0212281
+RngTests.UniformStatistics 5 0.00272707
+RngTests.NormalSeeding 1 0.0790645
+RngTests.NormalStatistics 1 0.0302818
+---

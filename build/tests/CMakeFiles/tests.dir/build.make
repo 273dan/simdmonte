@@ -69,28 +69,28 @@ include tests/CMakeFiles/tests.dir/progress.make
 # Include the compile flags for this target's objects.
 include tests/CMakeFiles/tests.dir/flags.make
 
-tests/CMakeFiles/tests.dir/tests.cpp.o: tests/CMakeFiles/tests.dir/flags.make
-tests/CMakeFiles/tests.dir/tests.cpp.o: /home/dan/Dev/simdmonte/tests/tests.cpp
-tests/CMakeFiles/tests.dir/tests.cpp.o: tests/CMakeFiles/tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/tests.dir/tests.cpp.o"
-	cd /home/dan/Dev/simdmonte/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/tests.dir/tests.cpp.o -MF CMakeFiles/tests.dir/tests.cpp.o.d -o CMakeFiles/tests.dir/tests.cpp.o -c /home/dan/Dev/simdmonte/tests/tests.cpp
+tests/CMakeFiles/tests.dir/tests_rng.cpp.o: tests/CMakeFiles/tests.dir/flags.make
+tests/CMakeFiles/tests.dir/tests_rng.cpp.o: /home/dan/Dev/simdmonte/tests/tests_rng.cpp
+tests/CMakeFiles/tests.dir/tests_rng.cpp.o: tests/CMakeFiles/tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/tests.dir/tests_rng.cpp.o"
+	cd /home/dan/Dev/simdmonte/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/tests.dir/tests_rng.cpp.o -MF CMakeFiles/tests.dir/tests_rng.cpp.o.d -o CMakeFiles/tests.dir/tests_rng.cpp.o -c /home/dan/Dev/simdmonte/tests/tests_rng.cpp
 
-tests/CMakeFiles/tests.dir/tests.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/tests.cpp.i"
-	cd /home/dan/Dev/simdmonte/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dan/Dev/simdmonte/tests/tests.cpp > CMakeFiles/tests.dir/tests.cpp.i
+tests/CMakeFiles/tests.dir/tests_rng.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/tests_rng.cpp.i"
+	cd /home/dan/Dev/simdmonte/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dan/Dev/simdmonte/tests/tests_rng.cpp > CMakeFiles/tests.dir/tests_rng.cpp.i
 
-tests/CMakeFiles/tests.dir/tests.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/tests.cpp.s"
-	cd /home/dan/Dev/simdmonte/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dan/Dev/simdmonte/tests/tests.cpp -o CMakeFiles/tests.dir/tests.cpp.s
+tests/CMakeFiles/tests.dir/tests_rng.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/tests_rng.cpp.s"
+	cd /home/dan/Dev/simdmonte/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dan/Dev/simdmonte/tests/tests_rng.cpp -o CMakeFiles/tests.dir/tests_rng.cpp.s
 
 # Object files for target tests
 tests_OBJECTS = \
-"CMakeFiles/tests.dir/tests.cpp.o"
+"CMakeFiles/tests.dir/tests_rng.cpp.o"
 
 # External object files for target tests
 tests_EXTERNAL_OBJECTS =
 
-tests/tests: tests/CMakeFiles/tests.dir/tests.cpp.o
+tests/tests: tests/CMakeFiles/tests.dir/tests_rng.cpp.o
 tests/tests: tests/CMakeFiles/tests.dir/build.make
 tests/tests: src/libsimdmonte_lib.a
 tests/tests: lib/libgtest_main.a

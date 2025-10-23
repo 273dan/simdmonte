@@ -1,6 +1,8 @@
 #pragma once
 #include "simdmonte/option/option.h"
 #include <vector>
+namespace simdmonte {
+
 
 class EuropeanOption : public Option {
 public:
@@ -10,3 +12,4 @@ public:
   virtual float payoff(const std::vector<float>& path) const override;
   virtual std::unique_ptr<ISimdHelper> get_simd_helper() const override;
 };
+}

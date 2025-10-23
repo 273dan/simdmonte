@@ -1,6 +1,9 @@
 #pragma once
 #include "simdmonte/misc/market_data.h"
 #include "simdmonte/pricer/pricer.h"
+namespace simdmonte {
+
+
 
 class MCPricerSISD : public IPricer {
 public:
@@ -13,3 +16,4 @@ private:
   std::vector<float> generate_path(float spot, float dt, float drift, float vol_dt) const;
 
 };
+}

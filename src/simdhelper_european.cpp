@@ -1,4 +1,6 @@
 #include "simdmonte/simdhelper/simdhelper_european.h"
+namespace simdmonte {
+
 
 EuropeanSimdHelper::EuropeanSimdHelper(double strike, EuropeanOption::OptionType type) :
   type_(type), strikes_(_mm256_set1_ps(strike)), zeroes_(_mm256_setzero_ps()) {};
@@ -19,5 +21,6 @@ __m256 EuropeanSimdHelper::payoffs() {
 
   return _mm256_max_ps(payoffs, zeroes_);
   
+}
 }
   

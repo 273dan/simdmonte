@@ -291,12 +291,12 @@ _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/clean:
 src/CMakeFiles/simdmonte_lib.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/simdmonte_lib.dir/build.make src/CMakeFiles/simdmonte_lib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=11,12,13,14,15,16,17,18,19 "Built target simdmonte_lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=11,12,13,14,15,16,17,18,19,20 "Built target simdmonte_lib"
 .PHONY : src/CMakeFiles/simdmonte_lib.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/simdmonte_lib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dan/Dev/simdmonte/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dan/Dev/simdmonte/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/simdmonte_lib.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dan/Dev/simdmonte/CMakeFiles 0
 .PHONY : src/CMakeFiles/simdmonte_lib.dir/rule
@@ -322,7 +322,7 @@ app/CMakeFiles/main.dir/all: src/CMakeFiles/simdmonte_lib.dir/all
 
 # Build rule for subdir invocation for target.
 app/CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dan/Dev/simdmonte/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dan/Dev/simdmonte/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 app/CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dan/Dev/simdmonte/CMakeFiles 0
 .PHONY : app/CMakeFiles/main.dir/rule
@@ -345,12 +345,12 @@ tests/CMakeFiles/tests.dir/all: _deps/googletest-build/googletest/CMakeFiles/gte
 tests/CMakeFiles/tests.dir/all: src/CMakeFiles/simdmonte_lib.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=20,21 "Built target tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=21,22 "Built target tests"
 .PHONY : tests/CMakeFiles/tests.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dan/Dev/simdmonte/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dan/Dev/simdmonte/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dan/Dev/simdmonte/CMakeFiles 0
 .PHONY : tests/CMakeFiles/tests.dir/rule

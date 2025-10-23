@@ -1,7 +1,11 @@
 #include "simdmonte/pricer/pricer_simd.h"
+#include "simdmonte/rnghelper/rnghelper.h"
+#include "simdmonte/misc/utils.h"
 #include <cmath>
 #include <immintrin.h>
 #include <iostream>
+namespace simdmonte {
+
 
 
 
@@ -24,12 +28,13 @@ float MCPricerSIMD::price(const Option& option, const MarketData& market) const 
 
 
 
+  RngHelper rng_helper = RngHelper();
   for(int i = 0; i < n_sims; i += 8) {
     std::unique_ptr<ISimdHelper> helper = option.get_simd_helper();
     __m256 current_log_prices = _mm256_set1_ps(log_spot);
     helper->update(current_log_prices);
     for(int j = 0; j < n_steps; j++) {
-      __m256 Z = packed_float_normals();
+      __m256 Z = rng_helper.normal_floats_8();
       __m256 shocks = _mm256_mul_ps(vols, Z);
       current_log_prices = _mm256_add_ps(current_log_prices, shocks);
       current_log_prices = _mm256_add_ps(current_log_prices, drifts);
@@ -90,3 +95,4 @@ __m256 MCPricerSIMD::packed_float_normals() const {
 
 
 
+}

@@ -2,6 +2,8 @@
 #include "simdmonte/option/option.h"
 #include "simdmonte/simdhelper/simdhelper_european.h"
 #include <cmath>
+namespace simdmonte {
+
 
 using EO = EuropeanOption;
 EO::EuropeanOption(float K, float T, OptionType type)
@@ -21,4 +23,5 @@ float EO::payoff(const std::vector<float>& path) const  {
 }
 std::unique_ptr<ISimdHelper> EO::get_simd_helper() const {
   return std::make_unique<EuropeanSimdHelper>(strike, type);
+}
 }

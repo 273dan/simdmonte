@@ -1,0 +1,138 @@
+Start testing: Oct 23 23:31 BST
+----------------------------------------------------------
+1/5 Testing: RngTests.UniformRange
+1/5 Test: RngTests.UniformRange
+Command: "/home/dan/Dev/simdmonte/build/tests/tests" "--gtest_filter=RngTests.UniformRange" "--gtest_also_run_disabled_tests"
+Directory: /home/dan/Dev/simdmonte/build/tests
+"RngTests.UniformRange" start time: Oct 23 23:31 BST
+Output:
+----------------------------------------------------------
+Running main() from /home/dan/Dev/simdmonte/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = RngTests.UniformRange
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RngTests
+[ RUN      ] RngTests.UniformRange
+[       OK ] RngTests.UniformRange (54 ms)
+[----------] 1 test from RngTests (54 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (54 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"RngTests.UniformRange" end time: Oct 23 23:31 BST
+"RngTests.UniformRange" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/5 Testing: RngTests.UniformSeeding
+2/5 Test: RngTests.UniformSeeding
+Command: "/home/dan/Dev/simdmonte/build/tests/tests" "--gtest_filter=RngTests.UniformSeeding" "--gtest_also_run_disabled_tests"
+Directory: /home/dan/Dev/simdmonte/build/tests
+"RngTests.UniformSeeding" start time: Oct 23 23:31 BST
+Output:
+----------------------------------------------------------
+Running main() from /home/dan/Dev/simdmonte/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = RngTests.UniformSeeding
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RngTests
+[ RUN      ] RngTests.UniformSeeding
+[       OK ] RngTests.UniformSeeding (40 ms)
+[----------] 1 test from RngTests (40 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (40 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RngTests.UniformSeeding" end time: Oct 23 23:31 BST
+"RngTests.UniformSeeding" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/5 Testing: RngTests.UniformStatistics
+3/5 Test: RngTests.UniformStatistics
+Command: "/home/dan/Dev/simdmonte/build/tests/tests" "--gtest_filter=RngTests.UniformStatistics" "--gtest_also_run_disabled_tests"
+Directory: /home/dan/Dev/simdmonte/build/tests
+"RngTests.UniformStatistics" start time: Oct 23 23:31 BST
+Output:
+----------------------------------------------------------
+Running main() from /home/dan/Dev/simdmonte/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = RngTests.UniformStatistics
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RngTests
+[ RUN      ] RngTests.UniformStatistics
+[       OK ] RngTests.UniformStatistics (11 ms)
+[----------] 1 test from RngTests (11 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (11 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RngTests.UniformStatistics" end time: Oct 23 23:31 BST
+"RngTests.UniformStatistics" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/5 Testing: RngTests.NormalSeeding
+4/5 Test: RngTests.NormalSeeding
+Command: "/home/dan/Dev/simdmonte/build/tests/tests" "--gtest_filter=RngTests.NormalSeeding" "--gtest_also_run_disabled_tests"
+Directory: /home/dan/Dev/simdmonte/build/tests
+"RngTests.NormalSeeding" start time: Oct 23 23:31 BST
+Output:
+----------------------------------------------------------
+Running main() from /home/dan/Dev/simdmonte/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = RngTests.NormalSeeding
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RngTests
+[ RUN      ] RngTests.NormalSeeding
+[       OK ] RngTests.NormalSeeding (76 ms)
+[----------] 1 test from RngTests (76 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (76 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"RngTests.NormalSeeding" end time: Oct 23 23:31 BST
+"RngTests.NormalSeeding" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/5 Testing: RngTests.NormalStatistics
+5/5 Test: RngTests.NormalStatistics
+Command: "/home/dan/Dev/simdmonte/build/tests/tests" "--gtest_filter=RngTests.NormalStatistics" "--gtest_also_run_disabled_tests"
+Directory: /home/dan/Dev/simdmonte/build/tests
+"RngTests.NormalStatistics" start time: Oct 23 23:31 BST
+Output:
+----------------------------------------------------------
+Running main() from /home/dan/Dev/simdmonte/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = RngTests.NormalStatistics
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RngTests
+[ RUN      ] RngTests.NormalStatistics
+[       OK ] RngTests.NormalStatistics (28 ms)
+[----------] 1 test from RngTests (28 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (28 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"RngTests.NormalStatistics" end time: Oct 23 23:31 BST
+"RngTests.NormalStatistics" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 23 23:31 BST

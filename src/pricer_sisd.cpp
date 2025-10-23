@@ -2,6 +2,8 @@
 #include "simdmonte/misc/market_data.h"
 #include <random>
 #include <iostream>
+namespace simdmonte {
+
 
 using MCSISD = MCPricerSISD;
 MCSISD::MCPricerSISD(int sims, int steps) : n_sims(sims), n_steps(steps) {};
@@ -44,3 +46,4 @@ std::vector<float> MCSISD::generate_path(float spot, float dt, float drift, floa
   return path;
 }
 
+}

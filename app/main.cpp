@@ -5,6 +5,8 @@
 
 #include <memory>
 #include <iostream>
+using namespace simdmonte;
+
 
 int main() {
   MarketData market(
@@ -15,7 +17,7 @@ int main() {
   double strike = 100.0;
   double expiry = 1.0; // Years decimal
 
-  int n_sims = 100000;
+  int n_sims = 1000000;
   int n_steps = 252;
   std::unique_ptr<Option> option =
     std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Call);

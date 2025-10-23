@@ -69,24 +69,10 @@ include src/CMakeFiles/simdmonte_lib.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/CMakeFiles/simdmonte_lib.dir/flags.make
 
-src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.o: src/CMakeFiles/simdmonte_lib.dir/flags.make
-src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.o: src/market_data.cpp
-src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.o: src/CMakeFiles/simdmonte_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.o"
-	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.o -MF CMakeFiles/simdmonte_lib.dir/market_data.cpp.o.d -o CMakeFiles/simdmonte_lib.dir/market_data.cpp.o -c /home/dan/Dev/simdmonte/src/market_data.cpp
-
-src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/simdmonte_lib.dir/market_data.cpp.i"
-	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dan/Dev/simdmonte/src/market_data.cpp > CMakeFiles/simdmonte_lib.dir/market_data.cpp.i
-
-src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/simdmonte_lib.dir/market_data.cpp.s"
-	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dan/Dev/simdmonte/src/market_data.cpp -o CMakeFiles/simdmonte_lib.dir/market_data.cpp.s
-
 src/CMakeFiles/simdmonte_lib.dir/option.cpp.o: src/CMakeFiles/simdmonte_lib.dir/flags.make
 src/CMakeFiles/simdmonte_lib.dir/option.cpp.o: src/option.cpp
 src/CMakeFiles/simdmonte_lib.dir/option.cpp.o: src/CMakeFiles/simdmonte_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/option.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/option.cpp.o"
 	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/simdmonte_lib.dir/option.cpp.o -MF CMakeFiles/simdmonte_lib.dir/option.cpp.o.d -o CMakeFiles/simdmonte_lib.dir/option.cpp.o -c /home/dan/Dev/simdmonte/src/option.cpp
 
 src/CMakeFiles/simdmonte_lib.dir/option.cpp.i: cmake_force
@@ -100,7 +86,7 @@ src/CMakeFiles/simdmonte_lib.dir/option.cpp.s: cmake_force
 src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.o: src/CMakeFiles/simdmonte_lib.dir/flags.make
 src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.o: src/option_european.cpp
 src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.o: src/CMakeFiles/simdmonte_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.o"
 	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.o -MF CMakeFiles/simdmonte_lib.dir/option_european.cpp.o.d -o CMakeFiles/simdmonte_lib.dir/option_european.cpp.o -c /home/dan/Dev/simdmonte/src/option_european.cpp
 
 src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.i: cmake_force
@@ -114,7 +100,7 @@ src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.s: cmake_force
 src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o: src/CMakeFiles/simdmonte_lib.dir/flags.make
 src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o: src/pricer_sisd.cpp
 src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o: src/CMakeFiles/simdmonte_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o"
 	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o -MF CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o.d -o CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o -c /home/dan/Dev/simdmonte/src/pricer_sisd.cpp
 
 src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.i: cmake_force
@@ -128,7 +114,7 @@ src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.s: cmake_force
 src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o: src/CMakeFiles/simdmonte_lib.dir/flags.make
 src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o: src/pricer_simd.cpp
 src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o: src/CMakeFiles/simdmonte_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o"
 	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o -MF CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o.d -o CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o -c /home/dan/Dev/simdmonte/src/pricer_simd.cpp
 
 src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.i: cmake_force
@@ -142,7 +128,7 @@ src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.s: cmake_force
 src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.o: src/CMakeFiles/simdmonte_lib.dir/flags.make
 src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.o: src/pricer.cpp
 src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.o: src/CMakeFiles/simdmonte_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.o"
 	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.o -MF CMakeFiles/simdmonte_lib.dir/pricer.cpp.o.d -o CMakeFiles/simdmonte_lib.dir/pricer.cpp.o -c /home/dan/Dev/simdmonte/src/pricer.cpp
 
 src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.i: cmake_force
@@ -156,7 +142,7 @@ src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.s: cmake_force
 src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o: src/CMakeFiles/simdmonte_lib.dir/flags.make
 src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o: src/simdhelper.cpp
 src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o: src/CMakeFiles/simdmonte_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o"
 	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o -MF CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o.d -o CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o -c /home/dan/Dev/simdmonte/src/simdhelper.cpp
 
 src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.i: cmake_force
@@ -170,7 +156,7 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.s: cmake_force
 src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: src/CMakeFiles/simdmonte_lib.dir/flags.make
 src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: src/simdhelper_european.cpp
 src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o: src/CMakeFiles/simdmonte_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o"
 	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o -MF CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o.d -o CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o -c /home/dan/Dev/simdmonte/src/simdhelper_european.cpp
 
 src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.i: cmake_force
@@ -181,21 +167,49 @@ src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.s"
 	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dan/Dev/simdmonte/src/simdhelper_european.cpp -o CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.s
 
+src/CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.o: src/CMakeFiles/simdmonte_lib.dir/flags.make
+src/CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.o: src/rnghelper.cpp
+src/CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.o: src/CMakeFiles/simdmonte_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.o"
+	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.o -MF CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.o.d -o CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.o -c /home/dan/Dev/simdmonte/src/rnghelper.cpp
+
+src/CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.i"
+	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dan/Dev/simdmonte/src/rnghelper.cpp > CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.i
+
+src/CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.s"
+	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dan/Dev/simdmonte/src/rnghelper.cpp -o CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.s
+
+src/CMakeFiles/simdmonte_lib.dir/utils.cpp.o: src/CMakeFiles/simdmonte_lib.dir/flags.make
+src/CMakeFiles/simdmonte_lib.dir/utils.cpp.o: src/utils.cpp
+src/CMakeFiles/simdmonte_lib.dir/utils.cpp.o: src/CMakeFiles/simdmonte_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/CMakeFiles/simdmonte_lib.dir/utils.cpp.o"
+	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/simdmonte_lib.dir/utils.cpp.o -MF CMakeFiles/simdmonte_lib.dir/utils.cpp.o.d -o CMakeFiles/simdmonte_lib.dir/utils.cpp.o -c /home/dan/Dev/simdmonte/src/utils.cpp
+
+src/CMakeFiles/simdmonte_lib.dir/utils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/simdmonte_lib.dir/utils.cpp.i"
+	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dan/Dev/simdmonte/src/utils.cpp > CMakeFiles/simdmonte_lib.dir/utils.cpp.i
+
+src/CMakeFiles/simdmonte_lib.dir/utils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/simdmonte_lib.dir/utils.cpp.s"
+	cd /home/dan/Dev/simdmonte/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dan/Dev/simdmonte/src/utils.cpp -o CMakeFiles/simdmonte_lib.dir/utils.cpp.s
+
 # Object files for target simdmonte_lib
 simdmonte_lib_OBJECTS = \
-"CMakeFiles/simdmonte_lib.dir/market_data.cpp.o" \
 "CMakeFiles/simdmonte_lib.dir/option.cpp.o" \
 "CMakeFiles/simdmonte_lib.dir/option_european.cpp.o" \
 "CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o" \
 "CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o" \
 "CMakeFiles/simdmonte_lib.dir/pricer.cpp.o" \
 "CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o" \
-"CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o"
+"CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o" \
+"CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.o" \
+"CMakeFiles/simdmonte_lib.dir/utils.cpp.o"
 
 # External object files for target simdmonte_lib
 simdmonte_lib_EXTERNAL_OBJECTS =
 
-src/libsimdmonte_lib.a: src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.o
 src/libsimdmonte_lib.a: src/CMakeFiles/simdmonte_lib.dir/option.cpp.o
 src/libsimdmonte_lib.a: src/CMakeFiles/simdmonte_lib.dir/option_european.cpp.o
 src/libsimdmonte_lib.a: src/CMakeFiles/simdmonte_lib.dir/pricer_sisd.cpp.o
@@ -203,9 +217,11 @@ src/libsimdmonte_lib.a: src/CMakeFiles/simdmonte_lib.dir/pricer_simd.cpp.o
 src/libsimdmonte_lib.a: src/CMakeFiles/simdmonte_lib.dir/pricer.cpp.o
 src/libsimdmonte_lib.a: src/CMakeFiles/simdmonte_lib.dir/simdhelper.cpp.o
 src/libsimdmonte_lib.a: src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o
+src/libsimdmonte_lib.a: src/CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.o
+src/libsimdmonte_lib.a: src/CMakeFiles/simdmonte_lib.dir/utils.cpp.o
 src/libsimdmonte_lib.a: src/CMakeFiles/simdmonte_lib.dir/build.make
 src/libsimdmonte_lib.a: src/CMakeFiles/simdmonte_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libsimdmonte_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dan/Dev/simdmonte/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library libsimdmonte_lib.a"
 	cd /home/dan/Dev/simdmonte/src && $(CMAKE_COMMAND) -P CMakeFiles/simdmonte_lib.dir/cmake_clean_target.cmake
 	cd /home/dan/Dev/simdmonte/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/simdmonte_lib.dir/link.txt --verbose=$(VERBOSE)
 

@@ -185,29 +185,29 @@ tests/fast:
 	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/build
 .PHONY : tests/fast
 
-tests.o: tests.cpp.o
-.PHONY : tests.o
+tests_rng.o: tests_rng.cpp.o
+.PHONY : tests_rng.o
 
 # target to build an object file
-tests.cpp.o:
-	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/tests.cpp.o
-.PHONY : tests.cpp.o
+tests_rng.cpp.o:
+	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/tests_rng.cpp.o
+.PHONY : tests_rng.cpp.o
 
-tests.i: tests.cpp.i
-.PHONY : tests.i
+tests_rng.i: tests_rng.cpp.i
+.PHONY : tests_rng.i
 
 # target to preprocess a source file
-tests.cpp.i:
-	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/tests.cpp.i
-.PHONY : tests.cpp.i
+tests_rng.cpp.i:
+	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/tests_rng.cpp.i
+.PHONY : tests_rng.cpp.i
 
-tests.s: tests.cpp.s
-.PHONY : tests.s
+tests_rng.s: tests_rng.cpp.s
+.PHONY : tests_rng.s
 
 # target to generate assembly for a file
-tests.cpp.s:
-	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/tests.cpp.s
-.PHONY : tests.cpp.s
+tests_rng.cpp.s:
+	cd /home/dan/Dev/simdmonte && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/tests_rng.cpp.s
+.PHONY : tests_rng.cpp.s
 
 # Help Target
 help:
@@ -223,9 +223,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... tests"
-	@echo "... tests.o"
-	@echo "... tests.i"
-	@echo "... tests.s"
+	@echo "... tests_rng.o"
+	@echo "... tests_rng.i"
+	@echo "... tests_rng.s"
 .PHONY : help
 
 

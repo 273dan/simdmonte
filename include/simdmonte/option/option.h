@@ -2,6 +2,8 @@
 #include <vector>
 #include <memory>
 #include "simdmonte/simdhelper/simdhelper.h"
+namespace simdmonte {
+
 class Option {
 public:
   virtual ~Option() = 0;
@@ -13,3 +15,5 @@ public:
 protected:
   Option(float K, float T);
 };
+
+}

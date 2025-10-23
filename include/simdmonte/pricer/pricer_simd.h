@@ -3,6 +3,9 @@
 #include "simdmonte/misc/market_data.h"
 #include <random>
 
+namespace simdmonte {
+
+
 class MCPricerSIMD : public IPricer {
 public:
   virtual float price(const Option& option, const MarketData& market) const override;
@@ -16,3 +19,4 @@ private:
   mutable std::mt19937 gen_;
 
 };
+}

@@ -1,5 +1,10 @@
 add_executable(tests 
-    tests.cpp
+    tests_rng.cpp
+)
+
+target_compile_options(tests
+    PRIVATE
+    -mavx2
 )
 
 target_link_libraries(tests

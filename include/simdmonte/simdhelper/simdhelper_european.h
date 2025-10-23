@@ -1,6 +1,8 @@
 #pragma once
 #include "simdmonte/simdhelper/simdhelper.h"
 #include "simdmonte/option/option_european.h"
+namespace simdmonte {
+
 
 class EuropeanSimdHelper : public ISimdHelper {
 public:
@@ -16,3 +18,4 @@ private:
 
 
 };
+}

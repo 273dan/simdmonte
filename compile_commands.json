@@ -25,12 +25,6 @@
 },
 {
   "directory": "/home/dan/Dev/simdmonte/src",
-  "command": "/usr/bin/c++  -I/home/dan/Dev/simdmonte/src/../include -O2 -g -DNDEBUG -std=gnu++17 -mavx2 -o CMakeFiles/simdmonte_lib.dir/market_data.cpp.o -c /home/dan/Dev/simdmonte/src/market_data.cpp",
-  "file": "/home/dan/Dev/simdmonte/src/market_data.cpp",
-  "output": "src/CMakeFiles/simdmonte_lib.dir/market_data.cpp.o"
-},
-{
-  "directory": "/home/dan/Dev/simdmonte/src",
   "command": "/usr/bin/c++  -I/home/dan/Dev/simdmonte/src/../include -O2 -g -DNDEBUG -std=gnu++17 -mavx2 -o CMakeFiles/simdmonte_lib.dir/option.cpp.o -c /home/dan/Dev/simdmonte/src/option.cpp",
   "file": "/home/dan/Dev/simdmonte/src/option.cpp",
   "output": "src/CMakeFiles/simdmonte_lib.dir/option.cpp.o"
@@ -72,6 +66,18 @@
   "output": "src/CMakeFiles/simdmonte_lib.dir/simdhelper_european.cpp.o"
 },
 {
+  "directory": "/home/dan/Dev/simdmonte/src",
+  "command": "/usr/bin/c++  -I/home/dan/Dev/simdmonte/src/../include -O2 -g -DNDEBUG -std=gnu++17 -mavx2 -o CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.o -c /home/dan/Dev/simdmonte/src/rnghelper.cpp",
+  "file": "/home/dan/Dev/simdmonte/src/rnghelper.cpp",
+  "output": "src/CMakeFiles/simdmonte_lib.dir/rnghelper.cpp.o"
+},
+{
+  "directory": "/home/dan/Dev/simdmonte/src",
+  "command": "/usr/bin/c++  -I/home/dan/Dev/simdmonte/src/../include -O2 -g -DNDEBUG -std=gnu++17 -mavx2 -o CMakeFiles/simdmonte_lib.dir/utils.cpp.o -c /home/dan/Dev/simdmonte/src/utils.cpp",
+  "file": "/home/dan/Dev/simdmonte/src/utils.cpp",
+  "output": "src/CMakeFiles/simdmonte_lib.dir/utils.cpp.o"
+},
+{
   "directory": "/home/dan/Dev/simdmonte/app",
   "command": "/usr/bin/c++  -I/home/dan/Dev/simdmonte/src/../include -O2 -g -DNDEBUG -std=gnu++17 -o CMakeFiles/main.dir/main.cpp.o -c /home/dan/Dev/simdmonte/app/main.cpp",
   "file": "/home/dan/Dev/simdmonte/app/main.cpp",
@@ -79,8 +85,8 @@
 },
 {
   "directory": "/home/dan/Dev/simdmonte/tests",
-  "command": "/usr/bin/c++  -I/home/dan/Dev/simdmonte/src/../include -isystem /home/dan/Dev/simdmonte/_deps/googletest-src/googletest/include -isystem /home/dan/Dev/simdmonte/_deps/googletest-src/googletest -O2 -g -DNDEBUG -std=gnu++17 -o CMakeFiles/tests.dir/tests.cpp.o -c /home/dan/Dev/simdmonte/tests/tests.cpp",
-  "file": "/home/dan/Dev/simdmonte/tests/tests.cpp",
-  "output": "tests/CMakeFiles/tests.dir/tests.cpp.o"
+  "command": "/usr/bin/c++  -I/home/dan/Dev/simdmonte/src/../include -isystem /home/dan/Dev/simdmonte/_deps/googletest-src/googletest/include -isystem /home/dan/Dev/simdmonte/_deps/googletest-src/googletest -O2 -g -DNDEBUG -std=gnu++17 -mavx2 -o CMakeFiles/tests.dir/tests_rng.cpp.o -c /home/dan/Dev/simdmonte/tests/tests_rng.cpp",
+  "file": "/home/dan/Dev/simdmonte/tests/tests_rng.cpp",
+  "output": "tests/CMakeFiles/tests.dir/tests_rng.cpp.o"
 }
 ]

@@ -1,5 +1,7 @@
 #pragma once
 #include <immintrin.h>
+namespace simdmonte {
+
 
 class ISimdHelper {
 public:
@@ -12,3 +14,4 @@ public:
 struct SimdHelperParams {
   bool use_log_prices = false;
 };
+}
