@@ -1,1 +1,0 @@
-/usr/bin/c++ -O2 -g -DNDEBUG CMakeFiles/tests.dir/tests_rng.cpp.o -o tests  ../src/libsimdmonte_lib.a ../lib/libgtest_main.a ../lib/libgtest.a 
