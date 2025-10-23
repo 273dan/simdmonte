@@ -7,13 +7,16 @@
 #include <iostream>
 
 int main() {
-  MarketData market(100.0, 0.05, 0.20);
+  MarketData market(
+      100.0, // Spot
+      0.05,  // Risk free rate
+      0.20   // Volatility
+      );
   double strike = 100.0;
-  double expiry = 1.0;
+  double expiry = 1.0; // Years decimal
 
-  int n_sims = 500000;
+  int n_sims = 100000;
   int n_steps = 252;
-
   std::unique_ptr<Option> option =
     std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Call);
 
