@@ -1,3 +1,19 @@
+# --- build directory and cmake artifacts --
+build/
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+compile_commands.json
+CTestTestfile.cmake
+perf.data
+Makefile
+cmake_install.cmake
+Testing/Temporary/
+_deps/
+.cache/
+
+
+# --- github template --- 
 # Prerequisites
 *.d
 
