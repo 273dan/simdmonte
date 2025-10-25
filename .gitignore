@@ -6,12 +6,12 @@ CMakeScripts/
 compile_commands.json
 CTestTestfile.cmake
 perf.data
+perf.data.old
 Makefile
 cmake_install.cmake
-Testing/Temporary/
+Testing/
 _deps/
 .cache/
-
 
 # --- github template --- 
 # Prerequisites

@@ -18,7 +18,7 @@ float MCSISD::price(const Option& option, const MarketData& market) const {
     float payoff = option.payoff(path);
     payoff_total += payoff;
     if(i % 10000 == 0) {
-      std::cout << "Simulation: " << i << " / " << n_sims << "\n";
+      // std::cout << "Simulation: " << i << " / " << n_sims << "\n";
     }
   }
   float average = payoff_total / n_sims;

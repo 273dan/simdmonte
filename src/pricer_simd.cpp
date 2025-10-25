@@ -1,5 +1,5 @@
 #include "simdmonte/pricer/pricer_simd.h"
-#include "simdmonte/rnghelper/rnghelper.h"
+#include "simdmonte/rng/rng.h"
 #include "simdmonte/misc/utils.h"
 #include <cmath>
 #include <immintrin.h>
@@ -10,7 +10,7 @@ namespace simdmonte {
 
 
 MCPricerSIMD::MCPricerSIMD(int sims, int steps)
-  : n_sims(sims), n_steps(steps), dist_(0.0, 1.0), gen_(std::random_device{}())  {};
+  : n_sims(sims), n_steps(steps) {};
 
 
 float MCPricerSIMD::price(const Option& option, const MarketData& market) const {
@@ -28,13 +28,13 @@ float MCPricerSIMD::price(const Option& option, const MarketData& market) const 
 
 
 
-  RngHelper rng_helper = RngHelper();
+  Rng rng_helper = Rng();
   for(int i = 0; i < n_sims; i += 8) {
     std::unique_ptr<ISimdHelper> helper = option.get_simd_helper();
     __m256 current_log_prices = _mm256_set1_ps(log_spot);
     helper->update(current_log_prices);
     for(int j = 0; j < n_steps; j++) {
-      __m256 Z = rng_helper.normal_floats_8();
+      __m256 Z = rng_helper.normal(Rng::NormalMethod::InverseCDF);
       __m256 shocks = _mm256_mul_ps(vols, Z);
       current_log_prices = _mm256_add_ps(current_log_prices, shocks);
       current_log_prices = _mm256_add_ps(current_log_prices, drifts);
@@ -67,7 +67,7 @@ float MCPricerSIMD::price(const Option& option, const MarketData& market) const 
 
     sum_payoffs += payoffs[0] + payoffs[1] + payoffs[2] + payoffs[3] + payoffs[4] + payoffs[5] + payoffs[6] + payoffs[7];
     if(i % 10000 == 0) {
-      std::cout << "Simulation: " << i << " / " << n_sims << "\n";
+      // std::cout << "Simulation: " << i << " / " << n_sims << "\n";
     }
   }
 
@@ -77,22 +77,4 @@ float MCPricerSIMD::price(const Option& option, const MarketData& market) const 
 
 
 }
-
-
-__m256 MCPricerSIMD::packed_float_normals() const {
-  float z1 = dist_(gen_);
-  float z2 = dist_(gen_);
-  float z3 = dist_(gen_);
-  float z4 = dist_(gen_);
-  float z5 = dist_(gen_);
-  float z6 = dist_(gen_);
-  float z7 = dist_(gen_);
-  float z8 = dist_(gen_);
-
-
-  return _mm256_set_ps(z1, z2, z3, z4, z5, z6, z7, z8);
-}
-
-
-
 }

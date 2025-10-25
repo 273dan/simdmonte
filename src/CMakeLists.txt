@@ -6,7 +6,7 @@ add_library(simdmonte_lib
     pricer.cpp
     simdhelper.cpp
     simdhelper_european.cpp
-    rnghelper.cpp
+    rng.cpp
     utils.cpp
 )
 
@@ -19,4 +19,5 @@ target_include_directories(simdmonte_lib
 target_compile_options(simdmonte_lib
     PRIVATE
     -mavx2
+    -mfma
 )

@@ -14,9 +14,6 @@ public:
 private:
   int n_sims;
   int n_steps;
-  __m256 packed_float_normals() const;
-  mutable std::normal_distribution<float> dist_;
-  mutable std::mt19937 gen_;
 
 };
 }
