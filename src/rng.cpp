@@ -1,7 +1,7 @@
 #include "simdmonte/rng/rng.h"
 #include "simdmonte/rng/rng_constants.h"
 #include "simdmonte/misc/utils.h"
-#include "avx_mathfun/avx_mathfun.h"
+#include "simdmonte/avx_mathfun_wrapper.h"
 #include <cstring>
 #include <cmath>
 #include <random>

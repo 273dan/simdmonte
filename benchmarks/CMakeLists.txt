@@ -1,6 +1,5 @@
 add_executable(benchmarks
     benchmarks_rng.cpp
-    benchmarks_pricing.cpp
 )
 
 target_include_directories(benchmarks

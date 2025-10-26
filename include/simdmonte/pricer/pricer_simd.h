@@ -1,6 +1,7 @@
 #pragma once
 #include "simdmonte/pricer/pricer.h"
 #include "simdmonte/misc/market_data.h"
+#include "simdmonte/pricer/params.h"
 #include <random>
 
 namespace simdmonte {
@@ -9,11 +10,13 @@ namespace simdmonte {
 class MCPricerSIMD : public IPricer {
 public:
   virtual float price(const Option& option, const MarketData& market) const override;
-  MCPricerSIMD(int sims, int steps);
+  MCPricerSIMD(Params params_);
 
 private:
-  int n_sims;
-  int n_steps;
+  int n_sims_;
+  int n_steps_;
+  Params params_;
+
 
 };
 }

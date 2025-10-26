@@ -8,6 +8,9 @@ add_library(simdmonte_lib
     simdhelper_european.cpp
     rng.cpp
     utils.cpp
+    underlying.cpp
+    underlying_gbmlog.cpp
+    avx_mathfun_wrapper.cpp
 )
 
 target_include_directories(simdmonte_lib

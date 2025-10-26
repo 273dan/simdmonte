@@ -2,6 +2,7 @@
 #include "simdmonte/option/option_european.h"
 #include "simdmonte/pricer/pricer_simd.h"
 #include "simdmonte/pricer/pricer_sisd.h"
+#include "simdmonte/pricer/params.h"
 
 #include <memory>
 #include <iostream>
@@ -19,11 +20,14 @@ int main() {
 
   int n_sims = 1000000;
   int n_steps = 252;
+
+  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
+
   std::unique_ptr<Option> option =
     std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Call);
 
   std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(n_sims, n_steps);
+    std::make_unique<MCPricerSIMD>(params);
 
   double price = pricer->price(*option, market);
 
