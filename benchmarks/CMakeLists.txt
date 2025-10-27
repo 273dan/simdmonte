@@ -1,5 +1,6 @@
 add_executable(benchmarks
     benchmarks_rng.cpp
+    benchmarks_sims.cpp
 )
 
 target_include_directories(benchmarks

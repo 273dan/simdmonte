@@ -18,7 +18,7 @@ int main() {
   double strike = 100.0;
   double expiry = 1.0; // Years decimal
 
-  int n_sims = 1000000;
+  int n_sims = 10000000;
   int n_steps = 252;
 
   Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
@@ -29,7 +29,7 @@ int main() {
   std::unique_ptr<IPricer> pricer = 
     std::make_unique<MCPricerSIMD>(params);
 
-  double price = pricer->price(*option, market);
+  double price = pricer->price_concurrent(*option, market);
 
   std::cout << price << "\n";
 

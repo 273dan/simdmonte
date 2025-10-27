@@ -10,6 +10,7 @@ namespace simdmonte {
 class MCPricerSIMD : public IPricer {
 public:
   virtual float price(const Option& option, const MarketData& market) const override;
+  virtual float price_concurrent(const Option& option, const MarketData& market) const override;
   MCPricerSIMD(Params params_);
 
 private:
