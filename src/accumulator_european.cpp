@@ -1,16 +1,16 @@
-#include "simdmonte/simdhelper/simdhelper_european.h"
+#include "simdmonte/accumulator/accumulator_european.h"
 namespace simdmonte {
 
 
-EuropeanSimdHelper::EuropeanSimdHelper(double strike, EuropeanOption::OptionType type) :
+EuropeanAccumulator::EuropeanAccumulator(double strike, EuropeanOption::OptionType type) :
   type_(type), strikes_(_mm256_set1_ps(strike)), zeroes_(_mm256_setzero_ps()) {};
 
 
-void EuropeanSimdHelper::update(const __m256& prices) {
+void EuropeanAccumulator::update(const __m256& prices) {
   prices_ = prices;
 }
 
-__m256 EuropeanSimdHelper::payoffs() {
+__m256 EuropeanAccumulator::payoffs() {
   __m256 payoffs;
   if(type_ == EuropeanOption::OptionType::Call) {
     payoffs = _mm256_sub_ps(prices_, strikes_);

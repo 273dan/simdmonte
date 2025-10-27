@@ -1,11 +1,10 @@
 add_library(simdmonte_lib
     option.cpp
     option_european.cpp
-    pricer_sisd.cpp
     pricer_simd.cpp
     pricer.cpp
-    simdhelper.cpp
-    simdhelper_european.cpp
+    accumulator.cpp
+    accumulator_european.cpp
     rng.cpp
     utils.cpp
     underlying.cpp

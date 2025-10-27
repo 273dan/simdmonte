@@ -10,6 +10,6 @@ public:
   OptionType type;
   EuropeanOption(float K, float T, OptionType type);
   virtual float payoff(const std::vector<float>& path) const override;
-  virtual std::unique_ptr<ISimdHelper> get_simd_helper() const override;
+  virtual std::unique_ptr<IAccumulator> get_accumulator() const override;
 };
 }

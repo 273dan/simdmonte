@@ -1,14 +1,15 @@
 #pragma once
-#include "simdmonte/simdhelper/simdhelper.h"
+#include "simdmonte/accumulator/accumulator.h"
 #include "simdmonte/option/option_european.h"
+#include <immintrin.h>
 namespace simdmonte {
 
 
-class EuropeanSimdHelper : public ISimdHelper {
+class EuropeanAccumulator : public IAccumulator {
 public:
   virtual void update(const __m256&) override;
   virtual __m256 payoffs() override;
-  EuropeanSimdHelper(double strike, EuropeanOption::OptionType type);
+  EuropeanAccumulator(double strike, EuropeanOption::OptionType type);
 private:
   __m256 prices_;
   __m256 strikes_;

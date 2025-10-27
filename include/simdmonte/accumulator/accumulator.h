@@ -3,15 +3,11 @@
 namespace simdmonte {
 
 
-class ISimdHelper {
+class IAccumulator {
 public:
-  virtual ~ISimdHelper() = 0;
+  virtual ~IAccumulator() = 0;
   virtual void update(const __m256& prices) = 0;
   virtual __m256 payoffs() = 0;
 
-};
-
-struct SimdHelperParams {
-  bool use_log_prices = false;
 };
 }

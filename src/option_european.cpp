@@ -1,6 +1,6 @@
 #include "simdmonte/option/option_european.h"
 #include "simdmonte/option/option.h"
-#include "simdmonte/simdhelper/simdhelper_european.h"
+#include "simdmonte/accumulator/accumulator_european.h"
 #include <cmath>
 namespace simdmonte {
 
@@ -21,7 +21,7 @@ float EO::payoff(const std::vector<float>& path) const  {
 
 
 }
-std::unique_ptr<ISimdHelper> EO::get_simd_helper() const {
-  return std::make_unique<EuropeanSimdHelper>(strike, type);
+std::unique_ptr<IAccumulator> EO::get_accumulator() const {
+  return std::make_unique<EuropeanAccumulator>(strike, type);
 }
 }

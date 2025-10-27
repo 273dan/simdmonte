@@ -8,7 +8,7 @@ using namespace simdmonte;
 TEST(RngTests, UniformRange) {
   Rng rng{};
   float result[8];
-  for(int i = 0; i < 100000; i++) {
+  for(int i = 0; i < 1000000; i++) {
     __m256 floats = rng.uniform();
     _mm256_storeu_ps(result, floats);
     for(auto j: result) {
@@ -26,7 +26,7 @@ TEST(RngTests, UniformSeeding) {
 
   float arr1[8], arr2[8];
 
-  for(int i = 0; i < 100000; i++) {
+  for(int i = 0; i < 1000000; i++) {
     __m256 floats1 = rng1.uniform();
     __m256 floats2 = rng2.uniform();
 
@@ -44,7 +44,7 @@ TEST(RngTests, UniformMean) {
   double total = 0.0;
   float arr[8];
   Rng rng{};
-  const int n_calls = 1000000;
+  const int n_calls = 10000000;
   const int total_floats = 8 * n_calls;
 
   for(int i = 0; i < n_calls; i++) {
@@ -65,7 +65,7 @@ TEST(RngTests, BoxMullerNormalSeeding) {
 
   float arr1[8], arr2[8];
 
-  for(int i = 0; i < 100000; i++) {
+  for(int i = 0; i < 1000000; i++) {
     __m256 floats1 = rng1.normal(Rng::NormalMethod::BoxMuller);
     __m256 floats2 = rng2.normal(Rng::NormalMethod::BoxMuller);
 
@@ -81,7 +81,7 @@ TEST(RngTests, BoxMullerNormalMean) {
   double total = 0.0;
   float arr[8];
   Rng rng{};
-  const int n_calls = 1000000;
+  const int n_calls = 10000000;
   const int total_floats = 8 * n_calls;
 
   for(int i = 0; i < n_calls; i++) {
@@ -116,7 +116,7 @@ TEST(RngTests, InverseCDFNormalMean) {
   double total = 0.0;
   float arr[8];
   Rng rng{};
-  const int n_calls = 1000000;
+  const int n_calls = 10000000;
   const int total_floats = 8 * n_calls;
 
   for(int i = 0; i < n_calls; i++) {
