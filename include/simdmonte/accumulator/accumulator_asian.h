@@ -14,7 +14,9 @@ public:
 private:
   __m256 avg_;
   __m256 sum_;
-  __m256i step_;
+  int steps_total_;
+  int step_thresh_;
+  __m256i steps_priced_;
   float strike_;
 
   AsianOption::OptionType o_type_;

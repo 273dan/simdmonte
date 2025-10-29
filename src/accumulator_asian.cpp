@@ -4,10 +4,15 @@
 
 namespace simdmonte {
 
-AsianAccumulator::AsianAccumulator(float strike, AsianOption::OptionType o_type, AsianOption::StrikeType s_type) : strike_(strike), o_type_(o_type), s_type_(s_type) {};
+AsianAccumulator::AsianAccumulator(float strike, AsianOption::OptionType o_type, AsianOption::StrikeType s_type) : strike_(strike), o_type_(o_type), s_type_(s_type), steps_priced_(_mm256_set1_epi32(0)) {};
 
 void AsianAccumulator::update(const __m256& prices) {
-  step_ = _mm256_add_epi32(step_, _mm256_set1_epi32(1));
+  steps_total_++;
+  if(steps_total_ >= step_thresh_) {
+
+  }
+
+
 
   
 
