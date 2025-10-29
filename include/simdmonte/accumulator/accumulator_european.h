@@ -9,7 +9,7 @@ class EuropeanAccumulator : public IAccumulator {
 public:
   virtual void update(const __m256&) override;
   virtual __m256 payoffs() override;
-  EuropeanAccumulator(double strike, EuropeanOption::OptionType type);
+  EuropeanAccumulator(float strike, EuropeanOption::OptionType type);
 private:
   __m256 prices_;
   __m256 strikes_;

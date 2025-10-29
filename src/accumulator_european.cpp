@@ -2,7 +2,7 @@
 namespace simdmonte {
 
 
-EuropeanAccumulator::EuropeanAccumulator(double strike, EuropeanOption::OptionType type) :
+EuropeanAccumulator::EuropeanAccumulator(float strike, EuropeanOption::OptionType type) :
   type_(type), strikes_(_mm256_set1_ps(strike)), zeroes_(_mm256_setzero_ps()) {};
 
 

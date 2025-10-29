@@ -3,11 +3,11 @@
 #include "simdmonte/misc/utils.h"
 #include "simdmonte/underlying/underlying.h"
 #include "simdmonte/underlying/underlying_factory.h"
-#include <iostream>
 #include <numeric>
 #include <thread>
 #include <cmath>
 #include <immintrin.h>
+#include <vector>
 namespace simdmonte {
 
 
