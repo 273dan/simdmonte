@@ -1,5 +1,4 @@
 #pragma once
-#include "simdmonte/underlying/underlying.h"
 #include "simdmonte/underlying/underlying_gbmlog.h"
 #include <memory>
 #include <stdexcept>

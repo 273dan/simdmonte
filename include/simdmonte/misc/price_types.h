@@ -1,0 +1,18 @@
+#include "simdmonte/avx_mathfun_wrapper.h"
+#include <immintrin.h>
+namespace simdmonte {
+struct LogSpaceVec {
+  __m256 value;
+};
+
+struct PriceSpaceVec {
+  __m256 value;
+};
+
+inline PriceSpaceVec to_price_space(LogSpaceVec l) {
+  return exp256_ps(l);
+}
+inline LogSpaceVec to_log_space(PriceSpaceVec p) {
+  return log256_ps(p);
+}
+}

@@ -7,8 +7,10 @@ namespace simdmonte {
 
 class EuropeanAccumulator : public IAccumulator {
 public:
-  virtual void update(const __m256&) override;
+  virtual void update(const LogSpaceVec&) override;
+  virtual void update(const PriceSpaceVec&) override;
   virtual __m256 payoffs() override;
+  virtual void reset() override;
   EuropeanAccumulator(float strike, EuropeanOption::OptionType type);
 private:
   __m256 prices_;

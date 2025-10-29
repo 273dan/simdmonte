@@ -7,7 +7,8 @@ public:
   enum class StrikeType {Fixed, Floating};
   OptionType option_type;
   StrikeType strike_type;
-  AsianOption(float K, float T, OptionType o_type, StrikeType s_type);
-  virtual std::unique_ptr<IAccumulator> get_accumulator() const override;
+  float avg_period; // year decimal: 1.0 = 1 year
+  AsianOption(float K, float T, OptionType o_type, StrikeType s_type, float avg_p);
+  virtual std::unique_ptr<IAccumulator> get_accumulator(const Params& params) const override;
 };
 }

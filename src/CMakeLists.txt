@@ -6,6 +6,7 @@ add_library(simdmonte_lib
     pricer.cpp
     accumulator.cpp
     accumulator_european.cpp
+    accumulator_asian.cpp
     rng.cpp
     utils.cpp
     underlying.cpp

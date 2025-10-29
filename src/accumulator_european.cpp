@@ -22,5 +22,10 @@ __m256 EuropeanAccumulator::payoffs() {
   return _mm256_max_ps(payoffs, zeroes_);
   
 }
+
+void EuropeanAccumulator::reset() {
+  // we don't need to reset the european accumulator as it is not path dependent
+
+}
 }
   

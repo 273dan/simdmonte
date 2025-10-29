@@ -9,6 +9,6 @@ public:
   enum class OptionType { Call, Put };
   OptionType type;
   EuropeanOption(float K, float T, OptionType type);
-  virtual std::unique_ptr<IAccumulator> get_accumulator() const override;
+  virtual std::unique_ptr<IAccumulator> get_accumulator(const Params& params) const override;
 };
 }

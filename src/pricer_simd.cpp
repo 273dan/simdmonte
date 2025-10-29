@@ -38,7 +38,7 @@ float MCPricerSIMD::price(const Option& option, const MarketData& market) const 
     if(thread_calls == 0) continue;
     threads.emplace_back([=, &option, &market, &payoff_sums]{
       std::unique_ptr<IUnderlying> underlying = UnderlyingFactory::create(option, market, params_);
-      std::unique_ptr<IAccumulator> accumulator = option.get_accumulator();
+      std::unique_ptr<IAccumulator> accumulator = option.get_accumulator(params_);
 
       double sum_payoffs = 0.0;
 
@@ -48,13 +48,13 @@ float MCPricerSIMD::price(const Option& option, const MarketData& market) const 
         for(int step = 0; step < n_steps_; step++) {
           accumulator->update(underlying->step());
         }
-        accumulator->update(underlying->get_special());
         __m256 payoffs = accumulator->payoffs();
         float payoffs_arr[8];
         _mm256_storeu_ps(payoffs_arr, payoffs);
         for(auto p: payoffs_arr) {
           sum_payoffs += p;
         }
+        accumulator->reset();
       }
 
       payoff_sums[i] = sum_payoffs;
