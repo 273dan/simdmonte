@@ -41,7 +41,7 @@ int main() {
 
   // Example: An asian option with the same setup, on the same underlying, with 10 million simulations
 
-  n_sims = 1;
+  n_sims = 10000000;
   n_steps = 252;
 
   params = Params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);

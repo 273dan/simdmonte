@@ -1,5 +1,6 @@
 #pragma once
 #include "simdmonte/accumulator/accumulator.h"
+#include "simdmonte/misc/price_types.h"
 #include "simdmonte/option/option_asian.h"
 #include <immintrin.h>
 namespace simdmonte {
@@ -18,8 +19,8 @@ private:
   int avg_start_;
   int steps_elapsed_;
   int steps_priced_;
-  __m256 sum_;
-  __m256 current_;
+  PriceSpaceVec sum_;
+  PriceSpaceVec current_;
   __m256 strike_;
 
   AsianOption::OptionType o_type_;

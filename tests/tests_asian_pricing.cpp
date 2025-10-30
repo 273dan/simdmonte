@@ -1,259 +1,198 @@
+#include "gtest/gtest.h"
 #include <gtest/gtest.h>
 #include "simdmonte/misc/market_data.h"
 #include "simdmonte/option/option_asian.h"
 #include "simdmonte/pricer/pricer_simd.h"
 #include "simdmonte/pricer/params.h"
 #include <memory>
+/*  -- TEST BOILERPLATE --  */
 using namespace simdmonte;
 const static int TEST_SIMS = 10000000;
+const static int TEST_STEPS = 252; // TODO: Move this into test params to test different steps
 
-TEST(AsianPricing, ATMFixedCall) {
-  MarketData market(
-      100.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-  double avg_period = 1.0f;
+struct AsianTestCase {
+  std::string name;
+  float spot;
+  float strike;
+  float volatility;
+  float risk_free_rate;
+  float expiry;
+  AsianOption::OptionType option_type;
+  AsianOption::StrikeType strike_type;
+  float avg_period;
+  float exp_price;
+};
+class AsianTest : public ::testing::TestWithParam<AsianTestCase> {
+public:
+  MarketData market;
+  Params params;
+  std::unique_ptr<Option> option;
+  std::unique_ptr<MCPricerSIMD> pricer;
+  const AsianTestCase& tp = GetParam();
+  AsianTest() {}
 
-  int n_sims = TEST_SIMS;
-  int n_steps = 252;
+  void SetUp() override {
+    market = MarketData{tp.spot, tp.risk_free_rate, tp.volatility};
+    params = Params{TEST_STEPS, TEST_SIMS, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller};
+    option = std::make_unique<AsianOption>(tp.strike, tp.expiry, tp.option_type, tp.strike_type, tp.avg_period);
+    pricer = std::make_unique<MCPricerSIMD>(params);
+  }
 
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
 
-  std::unique_ptr<Option> option =
-    std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Call, AsianOption::StrikeType::Fixed, avg_period);
+};
 
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
 
+TEST_P(AsianTest, AsianPricing) {
+  const AsianTestCase& tp = GetParam();
   double price = pricer->price(*option, market);
+  ASSERT_NEAR(price, tp.exp_price, 0.01f);
 
-  ASSERT_NEAR(price, 5.77, 0.01f);
 }
-TEST(AsianPricing, ATMFixedPut) {
-  MarketData market(
-      100.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-  double avg_period = 1.0f;
+struct NameGenerator {
+  std::string operator()(const ::testing::TestParamInfo<AsianTestCase>& info) {
+    return info.param.name;
+  }
+};
+void PrintTo(const AsianTestCase& params, ::std::ostream* os) {} // Remove params byte dump
 
-  int n_sims = TEST_SIMS;
-  int n_steps = 252;
 
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
+/*  -- TEST CASES --  */
 
-  std::unique_ptr<Option> option =
-    std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Put, AsianOption::StrikeType::Fixed, avg_period);
+const AsianTestCase ATMFixedCall {
+  /* test name   */ "ATMFixedCall",
+  /* spot        */ 100.0f,                           
+  /* strike      */ 100.0f,
+  /* volatility  */ 0.20f,
+  /* risk free   */ 0.05f,
+  /* expiry      */ 1.0f,
+  /* option type */ AsianOption::OptionType::Call,
+  /* strike type */ AsianOption::StrikeType::Fixed,
+  /* avg period  */ 1.0f,
+  /* exp price   */ 5.77f,
+};
+const AsianTestCase ATMFixedPut {
+  /* test name   */ "ATMFixedPut",
+  /* spot        */ 100.0f,                           
+  /* strike      */ 100.0f,
+  /* volatility  */ 0.20f,
+  /* risk free   */ 0.05f,
+  /* expiry      */ 1.0f,
+  /* option type */ AsianOption::OptionType::Put,
+  /* strike type */ AsianOption::StrikeType::Fixed,
+  /* avg period  */ 1.0f,
+  /* exp price   */ 4.31f,
+};
+const AsianTestCase ITMFixedCall {
+  /* test name   */ "ITMFixedCall",
+  /* spot        */ 120.0f,                           
+  /* strike      */ 100.0f,
+  /* volatility  */ 0.20f,
+  /* risk free   */ 0.05f,
+  /* expiry      */ 1.0f,
+  /* option type */ AsianOption::OptionType::Call,
+  /* strike type */ AsianOption::StrikeType::Fixed,
+  /* avg period  */ 1.0f,
+  /* exp price   */ 14.90f,
+};
+const AsianTestCase ITMFixedPut {
+  /* test name   */ "ITMFixedPut",
+  /* spot        */ 120.0f,                           
+  /* strike      */ 100.0f,
+  /* volatility  */ 0.20f,
+  /* risk free   */ 0.05f,
+  /* expiry      */ 1.0f,
+  /* option type */ AsianOption::OptionType::Put,
+  /* strike type */ AsianOption::StrikeType::Fixed,
+  /* avg period  */ 1.0f,
+  /* exp price   */ 0.51f,
+};
+const AsianTestCase OTMFixedCall {
+  /* test name   */ "OTMFixedCall",
+  /* spot        */ 80.0f,                           
+  /* strike      */ 100.0f,
+  /* volatility  */ 0.20f,
+  /* risk free   */ 0.05f,
+  /* expiry      */ 1.0f,
+  /* option type */ AsianOption::OptionType::Call,
+  /* strike type */ AsianOption::StrikeType::Fixed,
+  /* avg period  */ 1.0f,
+  /* exp price   */ 0.77f,
+};
+const AsianTestCase OTMFixedPut {
+  /* test name   */ "OTMFixedPut",
+  /* spot        */ 80.0f,                           
+  /* strike      */ 100.0f,
+  /* volatility  */ 0.20f,
+  /* risk free   */ 0.05f,
+  /* expiry      */ 1.0f,
+  /* option type */ AsianOption::OptionType::Put,
+  /* strike type */ AsianOption::StrikeType::Fixed,
+  /* avg period  */ 1.0f,
+  /* exp price   */ 16.35f,
+};
+const AsianTestCase ATMFixedHiVolCall {
+  /* test name   */ "ATMFixedHiVolCall",
+  /* spot        */ 100.0f,                           
+  /* strike      */ 100.0f,
+  /* volatility  */ 0.50f,
+  /* risk free   */ 0.05f,
+  /* expiry      */ 1.0f,
+  /* option type */ AsianOption::OptionType::Call,
+  /* strike type */ AsianOption::StrikeType::Fixed,
+  /* avg period  */ 1.0f,
+  /* exp price   */ 13.79f,
+};
+const AsianTestCase ATMFixedHiVolPut {
+  /* test name   */ "ATMFixedHiVolPut",
+  /* spot        */ 100.0f,                           
+  /* strike      */ 100.0f,
+  /* volatility  */ 0.50f,
+  /* risk free   */ 0.05f,
+  /* expiry      */ 1.0f,
+  /* option type */ AsianOption::OptionType::Put,
+  /* strike type */ AsianOption::StrikeType::Fixed,
+  /* avg period  */ 1.0f,
+  /* exp price   */ 12.33f,
+};
+const AsianTestCase ATMFixedPartialCall {
+  /* test name   */ "ATMFixedPartialCall",
+  /* spot        */ 100.0f,                           
+  /* strike      */ 100.0f,
+  /* volatility  */ 0.20f,
+  /* risk free   */ 0.05f,
+  /* expiry      */ 1.0f,
+  /* option type */ AsianOption::OptionType::Call,
+  /* strike type */ AsianOption::StrikeType::Fixed,
+  /* avg period  */ 0.25f,
+  /* exp price   */ 6.83f,
+};
+const AsianTestCase ATMFixedPartialPut {
+  /* test name   */ "ATMFixedPartialPut",
+  /* spot        */ 100.0f,                           
+  /* strike      */ 100.0f,
+  /* volatility  */ 0.20f,
+  /* risk free   */ 0.05f,
+  /* expiry      */ 1.0f,
+  /* option type */ AsianOption::OptionType::Put,
+  /* strike type */ AsianOption::StrikeType::Fixed,
+  /* avg period  */ 0.25f,
+  /* exp price   */ 5.38f,
+};
 
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 4.31f, 0.01f);
-}
-TEST(AsianPricing, ITMFixedCall) {
-  MarketData market(
-      120.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-  double avg_period = 1.0f;
-
-  int n_sims = TEST_SIMS;
-  int n_steps = 252;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Call, AsianOption::StrikeType::Fixed, avg_period);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 14.90f, 0.01f);
-}
-TEST(AsianPricing, ITMFixedPut) {
-  MarketData market(
-      120.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-  double avg_period = 1.0f;
-
-  int n_sims = TEST_SIMS;
-  int n_steps = 252;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Put, AsianOption::StrikeType::Fixed, avg_period);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 0.51f, 0.01f);
-}
-TEST(AsianPricing, OTMFixedCall) {
-  MarketData market(
-      80.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-  double avg_period = 1.0f;
-
-  int n_sims = TEST_SIMS;
-  int n_steps = 252;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Call, AsianOption::StrikeType::Fixed, avg_period);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 0.77f, 0.01f);
-}
-TEST(AsianPricing, OTMFixedPut) {
-  MarketData market(
-      80.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-  double avg_period = 1.0f;
-
-  int n_sims = TEST_SIMS;
-  int n_steps = 252;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Put, AsianOption::StrikeType::Fixed, avg_period);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 16.35f, 0.01f);
-}
-TEST(AsianPricing, ATMFixedCallHiVol) {
-  MarketData market(
-      100.0f, // Spot
-      0.05f,  // Risk free rate
-      0.5f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-  double avg_period = 1.0f;
-
-  int n_sims = TEST_SIMS;
-  int n_steps = 252;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Call, AsianOption::StrikeType::Fixed, avg_period);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 13.79f, 0.01f);
-}
-TEST(AsianPricing, ATMFixedPutHiVol) {
-  MarketData market(
-      100.0f, // Spot
-      0.05f,  // Risk free rate
-      0.5f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-  double avg_period = 1.0f;
-
-  int n_sims = TEST_SIMS;
-  int n_steps = 252;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Put, AsianOption::StrikeType::Fixed, avg_period);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 12.33f, 0.01f);
-}
-TEST(AsianPricing, ATMFixedCallPartial) {
-  MarketData market(
-      100.0f, // Spot
-      0.05f,  // Risk free rate
-      0.5f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-  double avg_period = 0.25f;
-
-  int n_sims = TEST_SIMS;
-  int n_steps = 252;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Call, AsianOption::StrikeType::Fixed, avg_period);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 6.83f, 0.01f);
-}
-TEST(AsianPricing, ATMFixedPutPartial) {
-  MarketData market(
-      100.0f, // Spot
-      0.05f,  // Risk free rate
-      0.5f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-  double avg_period = 0.25f;
-
-  int n_sims = TEST_SIMS;
-  int n_steps = 252;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Put, AsianOption::StrikeType::Fixed, avg_period);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 5.38f, 0.01f);
-}
+INSTANTIATE_TEST_SUITE_P(
+    AsianPricing,
+    AsianTest,
+    ::testing::Values(
+      ATMFixedCall,
+      ATMFixedPut,
+      ITMFixedCall,
+      ITMFixedPut,
+      OTMFixedCall,
+      OTMFixedPut,
+      ATMFixedHiVolCall,
+      ATMFixedHiVolPut,
+      ATMFixedPartialCall,
+      ATMFixedPartialPut
+      ),
+    NameGenerator{}
+);

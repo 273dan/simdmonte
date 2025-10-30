@@ -1,0 +1,12 @@
+FIXED STRIKE:
+Case,Spot (S),Strike (K),Vol (σ),Rate (r),Expiry (T),Avg. Period,Avg. Steps,Call Price,Put Price
+1. ATM,100,100,0.20,0.05,1.0 yr,Full (1.0 yr),252,$5.77,$4.31
+2. ITM,120,100,0.20,0.05,1.0 yr,Full (1.0 yr),252,$14.90,$0.51
+3. OTM,80,100,0.20,0.05,1.0 yr,Full (1.0 yr),252,$0.77,$16.35
+"4. ATM, Hi-Vol",100,100,0.50,0.05,1.0 yr,Full (1.0 yr),252,$13.79,$12.33
+"5. ATM, Partial",100,100,0.20,0.05,1.0 yr,Last 3 mo (0.25 yr),63,$6.83,$5.38
+
+FLOATING STRIKE:
+Case,Spot (S),Strike (K),Vol (σ),Rate (r),Expiry (T),Avg. Period,Avg. Steps,Call Price,Put Price
+6. ATM,100,100,0.20,0.05,1.0 yr,Full (1.0 yr),252,$4.51,$4.51
+"7. ATM, Hi-Vol",100,100,0.50,0.05,1.0 yr,Full (1.0 yr),252,$11.23,$11.23

@@ -1,3 +1,4 @@
+#include "gtest/gtest.h"
 #include <gtest/gtest.h>
 #include "simdmonte/misc/market_data.h"
 #include "simdmonte/option/option_european.h"
@@ -5,249 +6,171 @@
 #include "simdmonte/pricer/params.h"
 #include <memory>
 
+/*  -- TEST BOILERPLATE --  */
+
 using namespace simdmonte;
+const static int TEST_SIMS = 1e9;
 
-TEST(EuropeanPricing, ATMCall) {
-  MarketData market(
-      100.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
+struct EuropeanTestCase {
+  std::string name;
+  float spot;
+  float strike;
+  float volatility;
+  float risk_free_rate;
+  float expiry;
+  EuropeanOption::OptionType side;
+  float exp_price;
+};
 
-  int n_sims = 1000000000;
-  int n_steps = 1;
+class EuropeanTest : public ::testing::TestWithParam<EuropeanTestCase> {
+public:
+  MarketData market;
+  Params params;
+  std::unique_ptr<Option> option;
+  std::unique_ptr<MCPricerSIMD> pricer;
+  const EuropeanTestCase& tp = GetParam();
+  EuropeanTest() {}
 
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
+  void SetUp() override {
+    market = MarketData{tp.spot, tp.risk_free_rate, tp.volatility};
+    params = Params{1, TEST_SIMS, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller};
+    option = std::make_unique<EuropeanOption>(tp.strike, tp.expiry, tp.side);
+    pricer = std::make_unique<MCPricerSIMD>(params);
+  }
 
-  std::unique_ptr<Option> option =
-    std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Call);
 
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
+};
+TEST_P(EuropeanTest, EuropeanPricing) {
+  const EuropeanTestCase& tp = GetParam();
   double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 10.45f, 0.01f);
+  ASSERT_NEAR(price, tp.exp_price, 0.01f);
 
 }
-TEST(EuropeanPricing, ATMPut) {
-  MarketData market(
-      100.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0; // Years decimal
+struct NameGenerator {
+  std::string operator()(const ::testing::TestParamInfo<EuropeanTestCase>& info) {
+    return info.param.name;
+  }
+};
 
-  int n_sims = 1000000000;
-  int n_steps = 1;
+void PrintTo(const EuropeanTestCase& params, ::std::ostream* os) {} // Remove params byte dump
 
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
+/*  -- TEST CASES --  */
 
-  std::unique_ptr<Option> option =
-    std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Put);
+const EuropeanTestCase ATMCall {
+  /* test name  */ "ATMCall",
+  /* spot       */ 100.0f,                           
+  /* strike     */ 100.0f,
+  /* volatility */ 0.20f,
+  /* risk free  */ 0.05f,
+  /* expiry     */ 1.0f,
+  /* type       */ EuropeanOption::OptionType::Call,
+  /* exp price  */ 10.45f,
+};
+const EuropeanTestCase ATMPut {
+  /* test name  */ "ATMPut",
+  /* spot       */ 100.0f,                           
+  /* strike     */ 100.0f,
+  /* volatility */ 0.20f,
+  /* risk free  */ 0.05f,
+  /* expiry     */ 1.0f,
+  /* type       */ EuropeanOption::OptionType::Put,
+  /* exp price  */ 5.57f,
+};
+const EuropeanTestCase ITMCall {
+  /* test name  */ "ITMCall",
+  /* spot       */ 120.0f,                           
+  /* strike     */ 100.0f,
+  /* volatility */ 0.20f,
+  /* risk free  */ 0.05f,
+  /* expiry     */ 1.0f,
+  /* type       */ EuropeanOption::OptionType::Call,
+  /* exp price  */ 26.17f,
+};
+const EuropeanTestCase ITMPut {
+  /* test name  */ "ITMPut",
+  /* spot       */ 120.0f,                           
+  /* strike     */ 100.0f,
+  /* volatility */ 0.20f,
+  /* risk free  */ 0.05f,
+  /* expiry     */ 1.0f,
+  /* type       */ EuropeanOption::OptionType::Put,
+  /* exp price  */ 1.30f,
+};
+const EuropeanTestCase OTMCall {
+  /* test name  */ "OTMCall",
+  /* spot       */ 80.0f,                           
+  /* strike     */ 100.0f,
+  /* volatility */ 0.20f,
+  /* risk free  */ 0.05f,
+  /* expiry     */ 1.0f,
+  /* type       */ EuropeanOption::OptionType::Call,
+  /* exp price  */ 1.86f,
+};
+const EuropeanTestCase OTMPut {
+  /* test name  */ "OTMPut",
+  /* spot       */ 80.0f,                           
+  /* strike     */ 100.0f,
+  /* volatility */ 0.20f,
+  /* risk free  */ 0.05f,
+  /* expiry     */ 1.0f,
+  /* type       */ EuropeanOption::OptionType::Put,
+  /* exp price  */ 16.98f,
+};
+const EuropeanTestCase ATMHiVolCall {
+  /* test name  */ "ATMHiVolCall",
+  /* spot       */ 100.0f,                           
+  /* strike     */ 100.0f,
+  /* volatility */ 0.50f,
+  /* risk free  */ 0.05f,
+  /* expiry     */ 1.0f,
+  /* type       */ EuropeanOption::OptionType::Call,
+  /* exp price  */ 21.79f,
+};
+const EuropeanTestCase ATMHiVolPut {
+  /* test name  */ "ATMHiVolPut",
+  /* spot       */ 100.0f,                           
+  /* strike     */ 100.0f,
+  /* volatility */ 0.50f,
+  /* risk free  */ 0.05f,
+  /* expiry     */ 1.0f,
+  /* type       */ EuropeanOption::OptionType::Put,
+  /* exp price  */ 16.91f,
+};
+const EuropeanTestCase ATMShortExpiryCall {
+  /* test name  */ "ATMShortExpiryCall",
+  /* spot       */ 100.0f,                           
+  /* strike     */ 100.0f,
+  /* volatility */ 0.20f,
+  /* risk free  */ 0.05f,
+  /* expiry     */ 0.25f,
+  /* type       */ EuropeanOption::OptionType::Call,
+  /* exp price  */ 4.61f,
+};
+const EuropeanTestCase ATMShortExpiryPut {
+  /* test name  */ "ATMShortExpiryPut",
+  /* spot       */ 100.0f,                           
+  /* strike     */ 100.0f,
+  /* volatility */ 0.20f,
+  /* risk free  */ 0.05f,
+  /* expiry     */ 0.25f,
+  /* type       */ EuropeanOption::OptionType::Put,
+  /* exp price  */ 3.37f,
+};
 
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 5.57f, 0.01f);
-
-}
-
-TEST(EuropeanPricing, ITMCall) {
-  MarketData market(
-      120.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-
-  int n_sims = 1000000000;
-  int n_steps = 1;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Call);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 26.17f, 0.01f);
-}
-TEST(EuropeanPricing, ITMPut) {
-  MarketData market(
-      120.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-
-  int n_sims = 1000000000;
-  int n_steps = 1;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Put);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 1.30f, 0.01f);
-}
-TEST(EuropeanPricing, OTMCall) {
-  MarketData market(
-      80.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-
-  int n_sims = 1000000000;
-  int n_steps = 1;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Call);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 1.86f, 0.01f);
-}
-TEST(EuropeanPricing, OTMPut) {
-  MarketData market(
-      80.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-
-  int n_sims = 1000000000;
-  int n_steps = 1;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Put);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 16.98f, 0.01f);
-}
-
-TEST(EuropeanPricing, ATMHighVolCall) {
-  MarketData market(
-      100.0f, // Spot
-      0.05f,  // Risk free rate
-      0.50f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-
-  int n_sims = 1000000000;
-  int n_steps = 1;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Call);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 21.79f, 0.01f);
-}
-TEST(EuropeanPricing, ATMHighVolPut) {
-  MarketData market(
-      100.0f, // Spot
-      0.05f,  // Risk free rate
-      0.50f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 1.0f; // Years decimal
-
-  int n_sims = 1000000000;
-  int n_steps = 1;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Put);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 16.91f, 0.01f);
-}
-TEST(EuropeanPricing, ATMShortExpiryCall) {
-  MarketData market(
-      100.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 0.25f; // Years decimal
-
-  int n_sims = 1000000000;
-  int n_steps = 1;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Call);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 4.61f, 0.01f);
-}
-TEST(EuropeanPricing, ATMShortExpiryPut) {
-  MarketData market(
-      100.0f, // Spot
-      0.05f,  // Risk free rate
-      0.20f   // Volatility
-      );
-  double strike = 100.0f;
-  double expiry = 0.25f; // Years decimal
-
-  int n_sims = 1000000000;
-  int n_steps = 1;
-
-  Params params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> option =
-    std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Put);
-
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
-
-  double price = pricer->price(*option, market);
-
-  ASSERT_NEAR(price, 3.37f, 0.01f);
-}
+INSTANTIATE_TEST_SUITE_P(
+    EuropeanPricing,
+    EuropeanTest,
+    ::testing::Values(
+      ATMCall,
+      ATMPut,
+      ITMCall,
+      ITMPut,
+      OTMCall,
+      OTMPut,
+      ATMHiVolCall,
+      ATMHiVolPut,
+      ATMShortExpiryCall,
+      ATMShortExpiryPut
+    ),
+    NameGenerator{}
+);

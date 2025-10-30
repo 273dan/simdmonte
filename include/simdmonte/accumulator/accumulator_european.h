@@ -13,8 +13,8 @@ public:
   virtual void reset() override;
   EuropeanAccumulator(float strike, EuropeanOption::OptionType type);
 private:
-  __m256 prices_;
-  __m256 strikes_;
+  LogSpaceVec prices_;
+  PriceSpaceVec strikes_;
   __m256 zeroes_;
   EuropeanOption::OptionType type_;
   

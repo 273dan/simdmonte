@@ -1,6 +1,5 @@
 #include "simdmonte/underlying/underlying_gbmlog.h"
 #include "simdmonte/rng/rng.h"
-#include "simdmonte/avx_mathfun_wrapper.h"
 #include <cmath>
 #include <immintrin.h>
 namespace simdmonte {
@@ -17,21 +16,18 @@ GBMLogUnderlying::GBMLogUnderlying(const Option& option, const MarketData& marke
 
 
 
-__m256 GBMLogUnderlying::step() {
+LogSpaceVec GBMLogUnderlying::step() {
   __m256 Z = rng_.normal(Rng::NormalMethod::InverseCDF);
   __m256 shocks = _mm256_mul_ps(vol_dts_, Z);
   current_ = _mm256_add_ps(current_, shocks);
   current_ = _mm256_add_ps(current_, drifts_);
-  return current_;
+  return LogSpaceVec{current_};
 }
 
 void GBMLogUnderlying::set_current(float prices) {
   current_ = _mm256_set1_ps(prices);
 }
 
-__m256 GBMLogUnderlying::get_special() {
-  return exp256_ps(current_);
-}
 
 
 
