@@ -42,10 +42,11 @@ public:
 };
 
 
+// More lenient on asian option tests as the "true" price is also from simulation
 TEST_P(AsianTest, AsianPricing) {
   const AsianTestCase& tp = GetParam();
   double price = pricer->price(*option, market);
-  ASSERT_NEAR(price, tp.exp_price, 0.01f);
+  ASSERT_NEAR(price, tp.exp_price, 0.05f);
 
 }
 struct NameGenerator {
@@ -57,6 +58,7 @@ void PrintTo(const AsianTestCase& params, ::std::ostream* os) {} // Remove param
 
 
 /*  -- TEST CASES --  */
+/* Prices from https://www.coggit.com/freetools */
 
 const AsianTestCase ATMFixedCall {
   /* test name   */ "ATMFixedCall",
@@ -80,7 +82,7 @@ const AsianTestCase ATMFixedPut {
   /* option type */ AsianOption::OptionType::Put,
   /* strike type */ AsianOption::StrikeType::Fixed,
   /* avg period  */ 1.0f,
-  /* exp price   */ 4.31f,
+  /* exp price   */ 3.35f,
 };
 const AsianTestCase ITMFixedCall {
   /* test name   */ "ITMFixedCall",
@@ -92,7 +94,7 @@ const AsianTestCase ITMFixedCall {
   /* option type */ AsianOption::OptionType::Call,
   /* strike type */ AsianOption::StrikeType::Fixed,
   /* avg period  */ 1.0f,
-  /* exp price   */ 14.90f,
+  /* exp price   */ 22.10f,
 };
 const AsianTestCase ITMFixedPut {
   /* test name   */ "ITMFixedPut",
@@ -104,7 +106,7 @@ const AsianTestCase ITMFixedPut {
   /* option type */ AsianOption::OptionType::Put,
   /* strike type */ AsianOption::StrikeType::Fixed,
   /* avg period  */ 1.0f,
-  /* exp price   */ 0.51f,
+  /* exp price   */ 0.17f,
 };
 const AsianTestCase OTMFixedCall {
   /* test name   */ "OTMFixedCall",
@@ -116,7 +118,7 @@ const AsianTestCase OTMFixedCall {
   /* option type */ AsianOption::OptionType::Call,
   /* strike type */ AsianOption::StrikeType::Fixed,
   /* avg period  */ 1.0f,
-  /* exp price   */ 0.77f,
+  /* exp price   */ 0.19f,
 };
 const AsianTestCase OTMFixedPut {
   /* test name   */ "OTMFixedPut",
@@ -128,7 +130,7 @@ const AsianTestCase OTMFixedPut {
   /* option type */ AsianOption::OptionType::Put,
   /* strike type */ AsianOption::StrikeType::Fixed,
   /* avg period  */ 1.0f,
-  /* exp price   */ 16.35f,
+  /* exp price   */ 17.28f,
 };
 const AsianTestCase ATMFixedHiVolCall {
   /* test name   */ "ATMFixedHiVolCall",
@@ -140,7 +142,7 @@ const AsianTestCase ATMFixedHiVolCall {
   /* option type */ AsianOption::OptionType::Call,
   /* strike type */ AsianOption::StrikeType::Fixed,
   /* avg period  */ 1.0f,
-  /* exp price   */ 13.79f,
+  /* exp price   */ 12.36f,
 };
 const AsianTestCase ATMFixedHiVolPut {
   /* test name   */ "ATMFixedHiVolPut",
@@ -152,7 +154,7 @@ const AsianTestCase ATMFixedHiVolPut {
   /* option type */ AsianOption::OptionType::Put,
   /* strike type */ AsianOption::StrikeType::Fixed,
   /* avg period  */ 1.0f,
-  /* exp price   */ 12.33f,
+  /* exp price   */ 9.89f,
 };
 const AsianTestCase ATMFixedPartialCall {
   /* test name   */ "ATMFixedPartialCall",
@@ -164,7 +166,7 @@ const AsianTestCase ATMFixedPartialCall {
   /* option type */ AsianOption::OptionType::Call,
   /* strike type */ AsianOption::StrikeType::Fixed,
   /* avg period  */ 0.25f,
-  /* exp price   */ 6.83f,
+  /* exp price   */ 9.40f,
 };
 const AsianTestCase ATMFixedPartialPut {
   /* test name   */ "ATMFixedPartialPut",
@@ -176,7 +178,7 @@ const AsianTestCase ATMFixedPartialPut {
   /* option type */ AsianOption::OptionType::Put,
   /* strike type */ AsianOption::StrikeType::Fixed,
   /* avg period  */ 0.25f,
-  /* exp price   */ 5.38f,
+  /* exp price   */ 5.15f,
 };
 
 INSTANTIATE_TEST_SUITE_P(
