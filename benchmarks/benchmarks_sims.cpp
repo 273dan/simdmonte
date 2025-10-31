@@ -2,7 +2,7 @@
 #include "simdmonte/option/option_asian.h"
 #include "simdmonte/option/option_european.h"
 #include "simdmonte/pricer/params.h"
-#include "simdmonte/pricer/pricer_simd.h"
+#include "simdmonte/pricer/pricer.h"
 using namespace simdmonte;
 
 
@@ -24,11 +24,11 @@ static void BM_100MSimsSIMDConcurrentEuropean1Step(benchmark::State& state) {
   std::unique_ptr<Option> option =
     std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Call);
 
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
+  MCPricer pricer{params};
+
 
   for(auto _ : state) {
-    double price = pricer->price(*option, market);
+    double price = pricer.price(*option, market);
     benchmark::DoNotOptimize(price);
     state.SetItemsProcessed(n_sims);
   }
@@ -53,11 +53,10 @@ static void BM_1BSimsSIMDConcurrentEuropean1Step(benchmark::State& state) {
   std::unique_ptr<Option> option =
     std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Call);
 
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
+  MCPricer pricer{params};
 
   for(auto _ : state) {
-    double price = pricer->price(*option, market);
+    double price = pricer.price(*option, market);
     benchmark::DoNotOptimize(price);
     state.SetItemsProcessed(n_sims);
   }
@@ -83,11 +82,10 @@ static void BM_100MSimsSIMDConcurrentAsian252Step(benchmark::State& state) {
   std::unique_ptr<Option> option =
     std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Call, AsianOption::StrikeType::Fixed, 0.25f);
 
-  std::unique_ptr<IPricer> pricer = 
-    std::make_unique<MCPricerSIMD>(params);
+  MCPricer pricer{params};
 
   for(auto _ : state) {
-    double price = pricer->price(*option, market);
+    double price = pricer.price(*option, market);
     benchmark::DoNotOptimize(price);
     state.SetItemsProcessed(n_sims);
   }

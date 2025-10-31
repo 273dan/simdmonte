@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include "simdmonte/misc/market_data.h"
 #include "simdmonte/option/option_asian.h"
-#include "simdmonte/pricer/pricer_simd.h"
+#include "simdmonte/pricer/pricer.h"
 #include "simdmonte/pricer/params.h"
 #include <memory>
 /*  -- TEST BOILERPLATE --  */
@@ -27,7 +27,7 @@ public:
   MarketData market;
   Params params;
   std::unique_ptr<Option> option;
-  std::unique_ptr<MCPricerSIMD> pricer;
+  MCPricer pricer;
   const AsianTestCase& tp = GetParam();
   AsianTest() {}
 
@@ -35,7 +35,7 @@ public:
     market = MarketData{tp.spot, tp.risk_free_rate, tp.volatility};
     params = Params{TEST_STEPS, TEST_SIMS, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller};
     option = std::make_unique<AsianOption>(tp.strike, tp.expiry, tp.option_type, tp.strike_type, tp.avg_period);
-    pricer = std::make_unique<MCPricerSIMD>(params);
+    pricer = MCPricer{params};
   }
 
 
@@ -45,7 +45,7 @@ public:
 // More lenient on asian option tests as the "true" price is also from simulation
 TEST_P(AsianTest, AsianPricing) {
   const AsianTestCase& tp = GetParam();
-  double price = pricer->price(*option, market);
+  double price = pricer.price(*option, market);
   ASSERT_NEAR(price, tp.exp_price, 0.05f);
 
 }

@@ -1,12 +1,22 @@
 #pragma once
-#include "simdmonte/option/option.h"
 #include "simdmonte/misc/market_data.h"
+#include "simdmonte/pricer/params.h"
+#include "simdmonte/option/option.h"
+
 namespace simdmonte {
 
-class IPricer {
-public:
-  virtual ~IPricer() = 0;
-  virtual float price(const Option& option, const MarketData& market) const = 0;
-};
 
+class MCPricer {
+public:
+  float price(const Option& option, const MarketData& market) const;
+  MCPricer(Params params_);
+  MCPricer() = default;
+
+private:
+  int n_sims_;
+  int n_steps_;
+  Params params_;
+
+
+};
 }

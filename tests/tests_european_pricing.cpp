@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include "simdmonte/misc/market_data.h"
 #include "simdmonte/option/option_european.h"
-#include "simdmonte/pricer/pricer_simd.h"
+#include "simdmonte/pricer/pricer.h"
 #include "simdmonte/pricer/params.h"
 #include <memory>
 
@@ -27,7 +27,7 @@ public:
   MarketData market;
   Params params;
   std::unique_ptr<Option> option;
-  std::unique_ptr<MCPricerSIMD> pricer;
+  MCPricer pricer;
   const EuropeanTestCase& tp = GetParam();
   EuropeanTest() {}
 
@@ -35,14 +35,14 @@ public:
     market = MarketData{tp.spot, tp.risk_free_rate, tp.volatility};
     params = Params{1, TEST_SIMS, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller};
     option = std::make_unique<EuropeanOption>(tp.strike, tp.expiry, tp.side);
-    pricer = std::make_unique<MCPricerSIMD>(params);
+    pricer = MCPricer{params};
   }
 
 
 };
 TEST_P(EuropeanTest, EuropeanPricing) {
   const EuropeanTestCase& tp = GetParam();
-  double price = pricer->price(*option, market);
+  double price = pricer.price(*option, market);
   ASSERT_NEAR(price, tp.exp_price, 0.01f);
 
 }

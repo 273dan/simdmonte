@@ -1,7 +1,7 @@
 #include "simdmonte/misc/market_data.h"
 #include "simdmonte/option/option_asian.h"
 #include "simdmonte/option/option_european.h"
-#include "simdmonte/pricer/pricer_simd.h"
+#include "simdmonte/pricer/pricer.h"
 #include "simdmonte/pricer/params.h"
 
 #include <memory>
@@ -32,10 +32,9 @@ int main() {
   std::unique_ptr<Option> european_option =
     std::make_unique<EuropeanOption>(strike, expiry, EuropeanOption::OptionType::Call);
 
-  std::unique_ptr<IPricer> pricer_1 = 
-    std::make_unique<MCPricerSIMD>(params);
+  MCPricer pricer1{params};
 
-  double price = pricer_1->price(*european_option, market);
+  double price = pricer1.price(*european_option, market);
 
   std::cout << price << "\n";
 
@@ -49,10 +48,9 @@ int main() {
   std::unique_ptr<Option> asian_option =
     std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Call, AsianOption::StrikeType::Fixed, 1.0f);
 
-  std::unique_ptr<IPricer> pricer_2 = 
-    std::make_unique<MCPricerSIMD>(params);
+  MCPricer pricer2{params};
 
-  price = pricer_2->price(*asian_option, market);
+  price = pricer2.price(*asian_option, market);
 
   std::cout << price << "\n";
 
