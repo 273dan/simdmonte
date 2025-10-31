@@ -28,8 +28,7 @@ __m256 EuropeanAccumulator::payoffs() {
 }
 
 void EuropeanAccumulator::reset() {
-  // we don't need to reset the european accumulator as it is not path dependent
-
+  // Does not need to be reset - there is no path-specific behaviour
 }
-}
+} // namespace simdmonte
   

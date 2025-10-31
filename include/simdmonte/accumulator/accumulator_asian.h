@@ -26,6 +26,8 @@ private:
   AsianOption::OptionType o_type_;
   AsianOption::StrikeType s_type_;
 
+  void accumulate(const PriceSpaceVec& prices);
+
 };
-}
+} // namespace simdmonte
 

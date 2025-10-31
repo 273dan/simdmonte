@@ -1,8 +1,8 @@
 #include "simdmonte/accumulator/accumulator_asian.h"
+#include "simdmonte/misc/price_types.h"
 #include "simdmonte/option/option_asian.h"
 #include "avx_mathfun/avx_mathfun.h"
 #include <immintrin.h>
-#include <iostream>
 
 namespace simdmonte {
 
@@ -16,37 +16,25 @@ AsianAccumulator::AsianAccumulator(float strike, AsianOption::OptionType o_type,
 void AsianAccumulator::update(const LogSpaceVec& log_prices) {
   steps_elapsed_++;
   if(steps_elapsed_ > avg_start_) {
-    steps_priced_++;
-    PriceSpaceVec prices = to_price_space(log_prices);
-
-    // float pric[8];
-    // _mm256_storeu_ps(pric, prices.value);
-    // for(auto f: pric) {
-    //   std::cout << f << std::endl;
-    // }
-
-    current_ = prices;
-    sum_.value = _mm256_add_ps(sum_.value, prices.value);
+    accumulate(to_price_space(log_prices));
 
   }
 }
 
-// might not need this
 void AsianAccumulator::update(const PriceSpaceVec& prices) {
   steps_elapsed_++;
   if(steps_elapsed_ > avg_start_) {
-    steps_priced_++;
-
-    // float pric[8];
-    // _mm256_storeu_ps(pric, prices.value);
-    // for(auto f: pric) {
-    //   std::cout << f << std::endl;
-    // }
-
-    current_ = prices;
-    sum_.value = _mm256_add_ps(sum_.value, prices.value);
+    accumulate(prices);
 
   }
+}
+
+void AsianAccumulator::accumulate(const PriceSpaceVec& prices) {
+  steps_priced_++;
+
+  current_ = prices;
+  sum_.value = _mm256_add_ps(sum_.value, prices.value);
+
 }
 
 __m256 AsianAccumulator::payoffs() {
