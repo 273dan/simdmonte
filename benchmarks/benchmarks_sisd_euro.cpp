@@ -1,14 +1,13 @@
-#include <memory>
 #include <sstream>
 #include <iomanip>
 #include <benchmark/benchmark.h>
 #include "simdmonte/misc/market_data.h"
 #include "simdmonte/option/option_european.h"
 #include "simdmonte/pricer/params.h"
-#include "simdmonte/pricer/pricer.h"
+#include "simdmonte/pricer/pricer_sisd.h"
 using namespace simdmonte;
 
-static void BM_Euro_Performance(benchmark::State& state) {
+static void BM_SISD_Euro_Performance(benchmark::State& state) {
 
   MarketData market{
       100.0, // Spot
@@ -23,13 +22,12 @@ static void BM_Euro_Performance(benchmark::State& state) {
     simdmonte::params::NormalMethod::BoxMuller
 
   };
-  std::unique_ptr<simdmonte::Option> option =
-    std::make_unique<simdmonte::EuropeanOption>(100.0, 1.0, simdmonte::EuropeanOption::OptionType::Call);
 
-  MCPricer pricer{bm_params};
+  EuropeanOption option{100.0, 1.0, simdmonte::EuropeanOption::OptionType::Call};
+  MCPricerSISD pricer{bm_params};
 
   for(auto _: state) {
-    float price = pricer.price(*option, market);
+    float price = pricer.price(option, market);
     benchmark::DoNotOptimize(price);
     state.SetItemsProcessed(bm_n_sims);
   }
@@ -42,7 +40,7 @@ static void BM_Euro_Performance(benchmark::State& state) {
   state.SetLabel(ss.str() + " sims.");
 }
 
-BENCHMARK(BM_Euro_Performance)
+BENCHMARK(BM_SISD_Euro_Performance)
   ->RangeMultiplier(10)
   ->Range(1e7, 1e10)
   ->UseRealTime();

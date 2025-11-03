@@ -1,6 +1,8 @@
 add_executable(benchmarks
+    benchmarks_euro.cpp
+    benchmarks_sisd_euro.cpp
+    benchmarks_asian.cpp
     benchmarks_rng.cpp
-    benchmarks_sims.cpp
 )
 
 target_include_directories(benchmarks

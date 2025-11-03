@@ -3,12 +3,12 @@
 #include <iomanip>
 #include <benchmark/benchmark.h>
 #include "simdmonte/misc/market_data.h"
-#include "simdmonte/option/option_european.h"
+#include "simdmonte/option/option_asian.h"
 #include "simdmonte/pricer/params.h"
 #include "simdmonte/pricer/pricer.h"
 using namespace simdmonte;
 
-static void BM_Euro_Performance(benchmark::State& state) {
+static void BM_Asian_Performance(benchmark::State& state) {
 
   MarketData market{
       100.0, // Spot
@@ -17,14 +17,14 @@ static void BM_Euro_Performance(benchmark::State& state) {
   };
   long bm_n_sims = state.range(0);
   Params bm_params{
-    1, // n steps (1 for European option)
+    252, // n steps (252 for Asian option)
     bm_n_sims, 
     simdmonte::params::UnderlyingModel::GBM,
     simdmonte::params::NormalMethod::BoxMuller
 
   };
   std::unique_ptr<simdmonte::Option> option =
-    std::make_unique<simdmonte::EuropeanOption>(100.0, 1.0, simdmonte::EuropeanOption::OptionType::Call);
+    std::make_unique<simdmonte::AsianOption>(100.0, 1.0, simdmonte::AsianOption::OptionType::Call, simdmonte::AsianOption::StrikeType::Fixed, 0.5f);
 
   MCPricer pricer{bm_params};
 
@@ -42,7 +42,7 @@ static void BM_Euro_Performance(benchmark::State& state) {
   state.SetLabel(ss.str() + " sims.");
 }
 
-BENCHMARK(BM_Euro_Performance)
+BENCHMARK(BM_Asian_Performance)
   ->RangeMultiplier(10)
-  ->Range(1e7, 1e10)
+  ->Range(1e7, 1e8)
   ->UseRealTime();
