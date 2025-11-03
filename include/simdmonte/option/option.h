@@ -11,8 +11,14 @@ public:
 
   float strike;
   float expiry; // 1.0 = 1 year
+                //
+                //
+
 protected:
   Option(float K, float T);
+
+  // FOR GTEST ONLY
+  Option() {};
 };
 
 }

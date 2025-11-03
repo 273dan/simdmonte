@@ -23,8 +23,8 @@ private:
   PriceSpaceVec current_;
   __m256 strike_;
 
-  AsianOption::OptionType o_type_;
-  AsianOption::StrikeType s_type_;
+  AsianOption::OptionType option_type_;
+  AsianOption::StrikeType strike_type_;
 
   void accumulate(const PriceSpaceVec& prices);
 

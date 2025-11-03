@@ -2,16 +2,15 @@
 #include <gtest/gtest.h>
 #include "simdmonte/misc/market_data.h"
 #include "simdmonte/option/option_european.h"
-#include "simdmonte/pricer/pricer.h"
 #include "simdmonte/pricer/params.h"
-#include <memory>
+#include "simdmonte/pricer/pricer_sisd.h"
 
 /*  -- TEST BOILERPLATE --  */
 
 using namespace simdmonte;
 const static int TEST_SIMS = 1e8;
 
-struct EuropeanTestCase {
+struct SISDEuropeanTestCase {
   std::string name;
   float spot;
   float strike;
@@ -20,45 +19,43 @@ struct EuropeanTestCase {
   float expiry;
   EuropeanOption::OptionType side;
   float exp_price;
-  long n_sims;
 };
 
-class EuropeanTest : public ::testing::TestWithParam<EuropeanTestCase> {
+class SISDEuropeanTest : public ::testing::TestWithParam<SISDEuropeanTestCase> {
 public:
   MarketData market;
   Params params;
-  std::unique_ptr<Option> option;
-  MCPricer pricer;
-  const EuropeanTestCase& tp = GetParam();
-  EuropeanTest() {}
+  EuropeanOption option;
+  MCPricerSISD pricer;
+  const SISDEuropeanTestCase& tp = GetParam();
+  SISDEuropeanTest() {}
 
   void SetUp() override {
     market = MarketData{tp.spot, tp.risk_free_rate, tp.volatility};
     params = Params{1, TEST_SIMS, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller};
-    option = std::make_unique<EuropeanOption>(tp.strike, tp.expiry, tp.side);
-    pricer = MCPricer{params};
+    option = EuropeanOption{tp.strike, tp.expiry, tp.side};
+    pricer = MCPricerSISD{params};
   }
 
 
 };
-TEST_P(EuropeanTest, EuropeanPricing) {
-  const EuropeanTestCase& tp = GetParam();
-  params.n_sims = tp.n_sims;
-  double price = pricer.price(*option, market);
+TEST_P(SISDEuropeanTest, EuropeanPricing) {
+  const SISDEuropeanTestCase& tp = GetParam();
+  double price = pricer.price(option, market);
   ASSERT_NEAR(price, tp.exp_price, 0.01f);
 
 }
 struct NameGenerator {
-  std::string operator()(const ::testing::TestParamInfo<EuropeanTestCase>& info) {
+  std::string operator()(const ::testing::TestParamInfo<SISDEuropeanTestCase>& info) {
     return info.param.name;
   }
 };
 
-void PrintTo(const EuropeanTestCase& params, ::std::ostream* os) {} // Remove params byte dump
+void PrintTo(const SISDEuropeanTestCase& params, ::std::ostream* os) {} // Remove params byte dump
 
 /*  -- TEST CASES --  */
 
-const EuropeanTestCase ATMCall {
+const SISDEuropeanTestCase SISDATMCall {
   /* test name  */ "ATMCall",
   /* spot       */ 100.0f,                           
   /* strike     */ 100.0f,
@@ -67,9 +64,8 @@ const EuropeanTestCase ATMCall {
   /* expiry     */ 1.0f,
   /* type       */ EuropeanOption::OptionType::Call,
   /* exp price  */ 10.45f,
-  /* n sims */ TEST_SIMS,
 };
-const EuropeanTestCase ATMPut {
+const SISDEuropeanTestCase SISDATMPut {
   /* test name  */ "ATMPut",
   /* spot       */ 100.0f,                           
   /* strike     */ 100.0f,
@@ -78,9 +74,8 @@ const EuropeanTestCase ATMPut {
   /* expiry     */ 1.0f,
   /* type       */ EuropeanOption::OptionType::Put,
   /* exp price  */ 5.57f,
-  /* n sims */ TEST_SIMS,
 };
-const EuropeanTestCase ITMCall {
+const SISDEuropeanTestCase SISDITMCall {
   /* test name  */ "ITMCall",
   /* spot       */ 120.0f,                           
   /* strike     */ 100.0f,
@@ -89,9 +84,8 @@ const EuropeanTestCase ITMCall {
   /* expiry     */ 1.0f,
   /* type       */ EuropeanOption::OptionType::Call,
   /* exp price  */ 26.17f,
-  /* n sims */ TEST_SIMS,
 };
-const EuropeanTestCase ITMPut {
+const SISDEuropeanTestCase SISDITMPut {
   /* test name  */ "ITMPut",
   /* spot       */ 120.0f,                           
   /* strike     */ 100.0f,
@@ -100,9 +94,8 @@ const EuropeanTestCase ITMPut {
   /* expiry     */ 1.0f,
   /* type       */ EuropeanOption::OptionType::Put,
   /* exp price  */ 1.30f,
-  /* n sims */ TEST_SIMS,
 };
-const EuropeanTestCase OTMCall {
+const SISDEuropeanTestCase SISDOTMCall {
   /* test name  */ "OTMCall",
   /* spot       */ 80.0f,                           
   /* strike     */ 100.0f,
@@ -111,9 +104,8 @@ const EuropeanTestCase OTMCall {
   /* expiry     */ 1.0f,
   /* type       */ EuropeanOption::OptionType::Call,
   /* exp price  */ 1.86f,
-  /* n sims */ TEST_SIMS,
 };
-const EuropeanTestCase OTMPut {
+const SISDEuropeanTestCase SISDOTMPut {
   /* test name  */ "OTMPut",
   /* spot       */ 80.0f,                           
   /* strike     */ 100.0f,
@@ -122,9 +114,8 @@ const EuropeanTestCase OTMPut {
   /* expiry     */ 1.0f,
   /* type       */ EuropeanOption::OptionType::Put,
   /* exp price  */ 16.98f,
-  /* n sims */ TEST_SIMS,
 };
-const EuropeanTestCase ATMHiVolCall {
+const SISDEuropeanTestCase SISDATMHiVolCall {
   /* test name  */ "ATMHiVolCall",
   /* spot       */ 100.0f,                           
   /* strike     */ 100.0f,
@@ -133,9 +124,8 @@ const EuropeanTestCase ATMHiVolCall {
   /* expiry     */ 1.0f,
   /* type       */ EuropeanOption::OptionType::Call,
   /* exp price  */ 21.79f,
-  /* n sims */ TEST_SIMS,
 };
-const EuropeanTestCase ATMHiVolPut {
+const SISDEuropeanTestCase SISDATMHiVolPut {
   /* test name  */ "ATMHiVolPut",
   /* spot       */ 100.0f,                           
   /* strike     */ 100.0f,
@@ -144,9 +134,8 @@ const EuropeanTestCase ATMHiVolPut {
   /* expiry     */ 1.0f,
   /* type       */ EuropeanOption::OptionType::Put,
   /* exp price  */ 16.91f,
-  /* n sims */ TEST_SIMS,
 };
-const EuropeanTestCase ATMShortExpiryCall {
+const SISDEuropeanTestCase SISDATMShortExpiryCall {
   /* test name  */ "ATMShortExpiryCall",
   /* spot       */ 100.0f,                           
   /* strike     */ 100.0f,
@@ -155,9 +144,8 @@ const EuropeanTestCase ATMShortExpiryCall {
   /* expiry     */ 0.25f,
   /* type       */ EuropeanOption::OptionType::Call,
   /* exp price  */ 4.61f,
-  /* n sims */ TEST_SIMS,
 };
-const EuropeanTestCase ATMShortExpiryPut {
+const SISDEuropeanTestCase SISDATMShortExpiryPut {
   /* test name  */ "ATMShortExpiryPut",
   /* spot       */ 100.0f,                           
   /* strike     */ 100.0f,
@@ -166,47 +154,22 @@ const EuropeanTestCase ATMShortExpiryPut {
   /* expiry     */ 0.25f,
   /* type       */ EuropeanOption::OptionType::Put,
   /* exp price  */ 3.37f,
-  /* n sims */ TEST_SIMS,
-};
-const EuropeanTestCase ATMCallLongSim {
-  /* test name  */ "ATMCallLongSim",
-  /* spot       */ 100.0f,                           
-  /* strike     */ 100.0f,
-  /* volatility */ 0.20f,
-  /* risk free  */ 0.05f,
-  /* expiry     */ 1.0f,
-  /* type       */ EuropeanOption::OptionType::Call,
-  /* exp price  */ 10.45f,
-  /* n sims */ 100'000'000'000,
-};
-const EuropeanTestCase ATMPutLongSim {
-  /* test name  */ "ATMPutLongSim",
-  /* spot       */ 100.0f,                           
-  /* strike     */ 100.0f,
-  /* volatility */ 0.20f,
-  /* risk free  */ 0.05f,
-  /* expiry     */ 1.0f,
-  /* type       */ EuropeanOption::OptionType::Put,
-  /* exp price  */ 5.57f,
-  /* n sims */ 100'000'000'000,
 };
 
 INSTANTIATE_TEST_SUITE_P(
     EuropeanPricing,
-    EuropeanTest,
+    SISDEuropeanTest,
     ::testing::Values(
-      ATMCall,
-      ATMPut,
-      ITMCall,
-      ITMPut,
-      OTMCall,
-      OTMPut,
-      ATMHiVolCall,
-      ATMHiVolPut,
-      ATMShortExpiryCall,
-      ATMShortExpiryPut,
-      ATMCallLongSim,
-      ATMPutLongSim
+      SISDATMCall,
+      SISDATMPut,
+      SISDITMCall,
+      SISDITMPut,
+      SISDOTMCall,
+      SISDOTMPut,
+      SISDATMHiVolCall,
+      SISDATMHiVolPut,
+      SISDATMShortExpiryCall,
+      SISDATMShortExpiryPut
     ),
     NameGenerator{}
 );

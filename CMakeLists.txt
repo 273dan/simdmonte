@@ -27,6 +27,6 @@ set(CMAKE_BUILD_TYPE Release CACHE String "Build type" FORCE)
 enable_testing()
 
 add_subdirectory(src)
-add_subdirectory(app)
+add_subdirectory(examples)
 add_subdirectory(tests)
 add_subdirectory(benchmarks)

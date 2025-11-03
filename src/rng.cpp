@@ -102,10 +102,10 @@ __m256 Rng::uniform() const {
 
 }
 
-__m256 Rng::normal(const NormalMethod method) const {
+__m256 Rng::normal(const params::NormalMethod method) const {
   switch(method) {
-    case(Rng::NormalMethod::BoxMuller) : return box_muller_transform();
-    case(Rng::NormalMethod::InverseCDF) : return inverse_cdf_approx();
+    case(params::NormalMethod::BoxMuller) : return box_muller_transform();
+    case(params::NormalMethod::InverseCDF) : return inverse_cdf_approx();
   }
   throw std::invalid_argument("Unknown normal method");
 }

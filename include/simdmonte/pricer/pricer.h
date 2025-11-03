@@ -13,7 +13,7 @@ public:
   MCPricer() = default;
 
 private:
-  int n_sims_;
+  long n_sims_;
   int n_steps_;
   Params params_;
 

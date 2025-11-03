@@ -38,20 +38,4 @@ int main() {
 
   std::cout << price << "\n";
 
-  // Example: An asian option with the same setup, on the same underlying, with 10 million simulations
-
-  n_sims = 10000000;
-  n_steps = 252;
-
-  params = Params(n_steps, n_sims, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller);
-
-  std::unique_ptr<Option> asian_option =
-    std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Call, AsianOption::StrikeType::Fixed, 1.0f);
-
-  MCPricer pricer2{params};
-
-  price = pricer2.price(*asian_option, market);
-
-  std::cout << price << "\n";
-
 }

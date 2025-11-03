@@ -14,7 +14,7 @@ namespace params {
 
 struct Params {
   int n_steps;
-  int n_sims;
+  long n_sims;
   int64_t seed = 0;
   params::UnderlyingModel underlying_model = params::UnderlyingModel::GBM;
   params::NormalMethod normal_method = params::NormalMethod::BoxMuller;

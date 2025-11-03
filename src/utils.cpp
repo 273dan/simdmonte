@@ -36,5 +36,4 @@ float u64_to_float(uint64_t n) {
   return result;
 
 };
-
 }

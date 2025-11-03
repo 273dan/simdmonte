@@ -7,7 +7,7 @@
 #include <memory>
 /*  -- TEST BOILERPLATE --  */
 using namespace simdmonte;
-const static int TEST_SIMS = 10000000;
+const static int TEST_SIMS = 1e7;
 const static int TEST_STEPS = 252; // TODO: Move this into test params to test different steps
 
 struct AsianTestCase {

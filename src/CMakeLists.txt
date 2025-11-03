@@ -3,6 +3,7 @@ add_library(simdmonte_lib
     option_european.cpp
     option_asian.cpp
     pricer.cpp
+    pricer_sisd.cpp
     accumulator.cpp
     accumulator_european.cpp
     accumulator_asian.cpp

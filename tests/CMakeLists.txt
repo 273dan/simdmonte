@@ -2,6 +2,7 @@ add_executable(tests
     tests_rng.cpp
     tests_european_pricing.cpp
     tests_asian_pricing.cpp
+    tests_SISD_euro_pricing.cpp
 )
 
 target_compile_options(tests

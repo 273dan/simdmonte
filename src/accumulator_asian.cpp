@@ -6,8 +6,8 @@
 
 namespace simdmonte {
 
-AsianAccumulator::AsianAccumulator(float strike, AsianOption::OptionType o_type, AsianOption::StrikeType s_type, int avg_start) :
-  strike_(_mm256_set1_ps(strike)), o_type_(o_type), s_type_(s_type), avg_start_(avg_start), steps_priced_(0), steps_elapsed_(0), sum_{_mm256_setzero_ps()} {
+AsianAccumulator::AsianAccumulator(float strike, AsianOption::OptionType o_type, AsianOption::StrikeType strike_type, int avg_start) :
+  strike_(_mm256_set1_ps(strike)), option_type_(o_type), strike_type_(strike_type), avg_start_(avg_start), steps_priced_(0), steps_elapsed_(0), sum_{_mm256_setzero_ps()} {
 
 
 
@@ -44,7 +44,7 @@ __m256 AsianAccumulator::payoffs() {
   __m256 payoffs;
   __m256 zeroes = _mm256_setzero_ps();
 
-  if (s_type_ == AsianOption::StrikeType::Fixed) {
+  if (strike_type_ == AsianOption::StrikeType::Fixed) {
     lhs = avg.value;
     rhs = strike_;
   }
@@ -53,7 +53,7 @@ __m256 AsianAccumulator::payoffs() {
     rhs = avg.value;
   }
 
-  if (o_type_ == AsianOption::OptionType::Call) {
+  if (option_type_ == AsianOption::OptionType::Call) {
     payoffs = _mm256_sub_ps(lhs, rhs);
   }
   else {

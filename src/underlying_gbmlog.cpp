@@ -17,7 +17,7 @@ GBMLogUnderlying::GBMLogUnderlying(const Option& option, const MarketData& marke
 
 
 LogSpaceVec GBMLogUnderlying::step() {
-  __m256 Z = rng_.normal(Rng::NormalMethod::InverseCDF);
+  __m256 Z = rng_.normal(normal_method_);
   __m256 shocks = _mm256_mul_ps(vol_dts_, Z);
   current_ = _mm256_add_ps(current_, shocks);
   current_ = _mm256_add_ps(current_, drifts_);
