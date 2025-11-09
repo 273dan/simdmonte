@@ -18,12 +18,13 @@ MCPricer::MCPricer(Params params) :
 
 
 float MCPricer::price(const Option& option, const MarketData& market) const {
+  // Thread management
   unsigned int n_threads = std::thread::hardware_concurrency();
   n_threads = n_threads == 0 ? 1 : n_threads;
 
   int total_calls = (n_sims_ + 7) / 8;
 
-  int per_thread = total_calls / n_threads;
+  int per_thread = total_calls / n_threads; // Ensure that we do the exact number of simulations specified
   int remainder = total_calls % n_threads;
 
 
@@ -43,10 +44,10 @@ float MCPricer::price(const Option& option, const MarketData& market) const {
       double sum_payoffs = 0.0;
 
       for(int sim = 0;  sim < thread_calls; sim ++) {
-        underlying->set_current(std::log(market.spot));
+        underlying->set_current(std::log(market.spot)); // Set the starting price for the underlying
 
         for(int step = 0; step < n_steps_; step++) {
-          accumulator->update(underlying->step());
+          accumulator->update(underlying->step()); // Step forward and inform accumulator of the new price
         }
         __m256 payoffs = accumulator->payoffs();
         float payoffs_arr[8];
@@ -54,7 +55,7 @@ float MCPricer::price(const Option& option, const MarketData& market) const {
         for(auto p: payoffs_arr) {
           sum_payoffs += p;
         }
-        accumulator->reset();
+        accumulator->reset(); // Make sure that path-dependent variables are reset before the next simulation
       }
 
       payoff_sums[i] = sum_payoffs;
