@@ -36,29 +36,35 @@ float MCPricerSISD::price(const EuropeanOption& option, const MarketData& market
   return average * std::exp(-market.risk_free_rate * option.expiry);
 }
 float MCPricerSISD::price(const AsianOption& option, const MarketData& market) const {
-  double sum = 0.0;
-  float dt = option.expiry / static_cast<float>(n_steps_);
-  float vol_dt = market.volatility * std::sqrt(option.expiry);
-  float drift = (market.risk_free_rate - (0.5 * market.volatility * market.volatility)) * option.expiry;
-  float payoff_total{0.0f};
+  // Set up variables which are constant across all simulations
+  const float dt = option.expiry / static_cast<float>(n_steps_);
+  const float vol_dt = market.volatility * std::sqrt(dt);
+  const float drift = (market.risk_free_rate - (0.5 * market.volatility * market.volatility)) * dt;
+  const int pricing_start = static_cast<int>(((option.expiry - option.avg_period) / option.expiry) * n_steps_);
   std::mt19937 gen(std::random_device{}());
   std::normal_distribution<float> dist{0.0f, 1.0f};
+  float payoff_total{0.0f};
   
-  int j_priced{0};
-  int pricing_start = static_cast<int>(((option.expiry - option.avg_period) / option.expiry) * n_steps_);
   for(int i = 0; i < n_sims_; i++) {
+
+    // Set up per-simulation variables
+    int steps_priced{0};
     float current{market.spot};
     float price_total{0.0f};
+
+    // Pricing loop
     for(int j = 0; j < n_steps_; j++) {
-    float Z = dist(gen);
-    current = current * std::exp(drift + vol_dt * Z);
+      float Z = dist(gen);
+      current = current * std::exp(drift + vol_dt * Z);
 
       if(j > pricing_start) {
-        j_priced++;
+        steps_priced++;
         price_total += current;
       }
     }
-    float avg = price_total / j_priced;
+
+    // Calculate payoff for this simulation
+    float avg = price_total / steps_priced;
     float lhs, rhs;
     float payoff;
     if (option.strike_type == AsianOption::StrikeType::Fixed) {

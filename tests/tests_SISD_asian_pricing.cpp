@@ -6,7 +6,7 @@
 #include "simdmonte/pricer/pricer_sisd.h"
 /*  -- TEST BOILERPLATE --  */
 using namespace simdmonte;
-const static int TEST_SIMS = 1e5;
+const static int TEST_SIMS = 1e6;
 const static int TEST_STEPS = 252; // TODO: Move this into test params to test different steps
 
 struct SISDAsianTestCase {
@@ -42,7 +42,7 @@ public:
 
 
 // More lenient on asian option tests as the "true" price is also from simulation
-TEST_P(SISDAsianTest, AsianPricing) {
+TEST_P(SISDAsianTest, SISDAsianPricing) {
   const SISDAsianTestCase& tp = GetParam();
   double price = pricer.price(option, market);
   ASSERT_NEAR(price, tp.exp_price, 0.05f);
@@ -153,7 +153,7 @@ const SISDAsianTestCase ATMFixedHiVolPut {
   /* option type */ AsianOption::OptionType::Put,
   /* strike type */ AsianOption::StrikeType::Fixed,
   /* avg period  */ 1.0f,
-  /* exp price   */ 9.89f,
+  /* exp price   */ 9.98f,
 };
 const SISDAsianTestCase ATMFixedPartialCall {
   /* test name   */ "ATMFixedPartialCall",

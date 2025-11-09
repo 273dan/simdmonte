@@ -1,5 +1,4 @@
 #include "simdmonte/misc/market_data.h"
-#include "simdmonte/option/option_asian.h"
 #include "simdmonte/option/option_european.h"
 #include "simdmonte/pricer/pricer.h"
 #include "simdmonte/pricer/params.h"

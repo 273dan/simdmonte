@@ -12,6 +12,9 @@ cmake_install.cmake
 Testing/
 _deps/
 .cache/
+# --- my personal helper scripts -- #
+test-quick.sh
+bench-quick.sh
 
 # --- github template --- 
 # Prerequisites

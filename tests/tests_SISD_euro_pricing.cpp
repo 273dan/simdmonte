@@ -39,7 +39,7 @@ public:
 
 
 };
-TEST_P(SISDEuropeanTest, EuropeanPricing) {
+TEST_P(SISDEuropeanTest, SISDEuropeanPricing) {
   const SISDEuropeanTestCase& tp = GetParam();
   double price = pricer.price(option, market);
   ASSERT_NEAR(price, tp.exp_price, 0.01f);
