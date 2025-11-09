@@ -9,7 +9,8 @@
 /*  -- TEST BOILERPLATE --  */
 
 using namespace simdmonte;
-const static int TEST_SIMS = 1e8;
+const static long TEST_SIMS = 1e9;
+const static float PRECISION = 0.01f;
 
 struct EuropeanTestCase {
   std::string name;
@@ -45,7 +46,7 @@ TEST_P(EuropeanTest, EuropeanPricing) {
   const EuropeanTestCase& tp = GetParam();
   params.n_sims = tp.n_sims;
   double price = pricer.price(*option, market);
-  ASSERT_NEAR(price, tp.exp_price, 0.01f);
+  ASSERT_NEAR(price, tp.exp_price, PRECISION);
 
 }
 struct NameGenerator {
@@ -177,7 +178,7 @@ const EuropeanTestCase ATMCallLongSim {
   /* expiry     */ 1.0f,
   /* type       */ EuropeanOption::OptionType::Call,
   /* exp price  */ 10.45f,
-  /* n sims */ 100'000'000'000,
+  /* n sims */ 100'000'000'000L,
 };
 const EuropeanTestCase ATMPutLongSim {
   /* test name  */ "ATMPutLongSim",
@@ -188,7 +189,7 @@ const EuropeanTestCase ATMPutLongSim {
   /* expiry     */ 1.0f,
   /* type       */ EuropeanOption::OptionType::Put,
   /* exp price  */ 5.57f,
-  /* n sims */ 100'000'000'000,
+  /* n sims */ 100'000'000'000L,
 };
 
 INSTANTIATE_TEST_SUITE_P(

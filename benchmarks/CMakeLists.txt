@@ -2,6 +2,7 @@ add_executable(benchmarks
     benchmarks_euro.cpp
     benchmarks_sisd_euro.cpp
     benchmarks_asian.cpp
+    benchmarks_sisd_asian.cpp
     benchmarks_rng.cpp
 )
 

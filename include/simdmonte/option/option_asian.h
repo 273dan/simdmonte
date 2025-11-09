@@ -10,5 +10,8 @@ public:
   float avg_period; // year decimal: 1.0 = 1 year
   AsianOption(float K, float T, OptionType o_type, StrikeType s_type, float avg_p);
   virtual std::unique_ptr<IAccumulator> get_accumulator(const Params& params) const override;
+
+  /* FOR GTEST ONLY */
+  AsianOption() {};
 };
 }
