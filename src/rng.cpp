@@ -4,6 +4,7 @@
 #include "simdmonte/avx_mathfun_wrapper.h"
 #include <cstring>
 #include <cmath>
+#include <immintrin.h>
 #include <random>
 #include <stdexcept>
 
@@ -88,7 +89,55 @@ __m256 Rng::uniform() const {
     result[i + 4] = u64_to_float(u64s_2[i]);
   }
 
-  __m256 floats_simd = _mm256_loadu_ps(result);
+  __m256 floats = _mm256_loadu_ps(result);
+
+  // we often can't use 0: check for zeroes
+  __m256 zero_mask = _mm256_cmp_ps(floats, _mm256_setzero_ps(), _CMP_EQ_OQ);
+
+  const __m256 float_mins = _mm256_set1_ps(std::numeric_limits<float>::min());
+
+  floats = _mm256_blendv_ps(floats, float_mins, zero_mask);
+
+  return floats;
+
+
+}
+
+__m256 Rng::uniform_simd() const {
+  __m256i rand_u64s_1 = advance_state();
+  __m256i rand_u64s_2 = advance_state();
+
+  __m256i shifted_1 = _mm256_srli_epi64(rand_u64s_1, 40);
+  __m256i shifted_2 = _mm256_srli_epi64(rand_u64s_2, 40);
+
+
+  const __m256i permutation_mask = _mm256_setr_epi32(0, 2, 4, 6, 0, 0, 0, 0);
+  __m256i permuted_1 = _mm256_permutevar8x32_epi32(shifted_1,  permutation_mask);
+  __m256i permuted_2 = _mm256_permutevar8x32_epi32(shifted_2,  permutation_mask);
+
+
+  __m128i narrowed_1 = _mm256_castsi256_si128(permuted_1);
+  __m128i narrowed_2 = _mm256_castsi256_si128(permuted_2);
+
+  const __m128i mask_float_bits_for_int = _mm_set1_epi32(0x3F800000);
+
+  __m128i float_bits_1 = _mm_or_si128(narrowed_1, mask_float_bits_for_int);
+  __m128i float_bits_2 = _mm_or_si128(narrowed_2, mask_float_bits_for_int);
+
+  __m128 as_float_1 = _mm_castsi128_ps(float_bits_1);
+  __m128 as_float_2 = _mm_castsi128_ps(float_bits_2);
+
+
+  __m256 combined_floats = _mm256_castps128_ps256(as_float_1);
+  combined_floats = _mm256_insertf128_ps(combined_floats, as_float_2, 1);
+
+  const __m256 ones = _mm256_set1_ps(1.0f);
+
+  __m256 floats_simd = _mm256_sub_ps(combined_floats, ones);
+
+
+  uint64_t u64s_1[4];
+  uint64_t u64s_2[4];
 
   // we often can't use 0: check for zeroes
   __m256 zero_mask = _mm256_cmp_ps(floats_simd, _mm256_setzero_ps(), _CMP_EQ_OQ);
@@ -120,8 +169,8 @@ __m256 Rng::box_muller_transform() const {
   // implementation of Box-Muller transform
   // https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform
 
-  __m256 U1 = uniform();
-  __m256 U2 = uniform();
+  __m256 U1 = uniform_simd();
+  __m256 U2 = uniform_simd();
 
   __m256 pi = _mm256_set1_ps(M_PI);
 

@@ -42,5 +42,5 @@ static void BM_SISD_Asian_Performance(benchmark::State& state) {
 
 BENCHMARK(BM_SISD_Asian_Performance)
   ->RangeMultiplier(10)
-  ->Range(1e7, 1e8)
+  ->Range(1e7, 1e7)
   ->UseRealTime();

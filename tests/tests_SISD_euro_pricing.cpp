@@ -8,7 +8,7 @@
 /*  -- TEST BOILERPLATE --  */
 
 using namespace simdmonte;
-const static int TEST_SIMS = 1e8;
+const static long TEST_SIMS = 1e8;
 
 struct SISDEuropeanTestCase {
   std::string name;

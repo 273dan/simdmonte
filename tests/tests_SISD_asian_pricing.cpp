@@ -6,7 +6,7 @@
 #include "simdmonte/pricer/pricer_sisd.h"
 /*  -- TEST BOILERPLATE --  */
 using namespace simdmonte;
-const static int TEST_SIMS = 1e6;
+const static long TEST_SIMS = 1e6;
 const static int TEST_STEPS = 252; // TODO: Move this into test params to test different steps
 
 struct SISDAsianTestCase {

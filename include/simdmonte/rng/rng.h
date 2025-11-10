@@ -12,6 +12,7 @@ public:
   Rng();
   Rng(uint64_t seed);
   __m256 uniform() const;
+  __m256 uniform_simd() const;
   __m256 normal(params::NormalMethod method) const;
 
 private:
