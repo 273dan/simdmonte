@@ -19,7 +19,7 @@ Rng::Rng() {
   uint64_t seeds1[4];
 
   for(int i = 0; i < 4; i++) {
-    // combining two random u32s to make a u64
+    // Combining two random u32s to make a u64
     // rd()s output type is 'unsigned long' which for MSVC is a 32
     seeds0[i] = rd() | (static_cast<uint64_t>(rd()) << 32);
     seeds1[i] = rd() | (static_cast<uint64_t>(rd()) << 32);
@@ -104,44 +104,55 @@ __m256 Rng::uniform() const {
 }
 
 __m256 Rng::uniform_simd() const {
+
+  /* This function performs some bit manipulation to turn two vectors of 4 64 bit ints
+   * to one vector of 8 32 bit floats
+   * 1. 
+   * 
+   */ 
+
+  // These each contain 4 u64s
   __m256i rand_u64s_1 = advance_state();
   __m256i rand_u64s_2 = advance_state();
 
+
+  // Get top 24 bits to be the mantissa for the final float
   __m256i shifted_1 = _mm256_srli_epi64(rand_u64s_1, 40);
   __m256i shifted_2 = _mm256_srli_epi64(rand_u64s_2, 40);
 
-
+  // check gemini
   const __m256i permutation_mask = _mm256_setr_epi32(0, 2, 4, 6, 0, 0, 0, 0);
   __m256i permuted_1 = _mm256_permutevar8x32_epi32(shifted_1,  permutation_mask);
   __m256i permuted_2 = _mm256_permutevar8x32_epi32(shifted_2,  permutation_mask);
 
 
+  // Cast to 128 bits for compatability with the next functions
   __m128i narrowed_1 = _mm256_castsi256_si128(permuted_1);
   __m128i narrowed_2 = _mm256_castsi256_si128(permuted_2);
 
-  const __m128i mask_float_bits_for_int = _mm_set1_epi32(0x3F800000);
-
+  // Set the exponent to 1.0f, so the value will be from 1 to 2
+  const int FLOAT_ONE = 0x3F800000;
+  const __m128i mask_float_bits_for_int = _mm_set1_epi32(FLOAT_ONE);
   __m128i float_bits_1 = _mm_or_si128(narrowed_1, mask_float_bits_for_int);
   __m128i float_bits_2 = _mm_or_si128(narrowed_2, mask_float_bits_for_int);
 
+  // Cast to float
   __m128 as_float_1 = _mm_castsi128_ps(float_bits_1);
   __m128 as_float_2 = _mm_castsi128_ps(float_bits_2);
 
 
+  // Put the first vector into the lower 128 bits of a 256 vector, then insert the second vector
   __m256 combined_floats = _mm256_castps128_ps256(as_float_1);
   combined_floats = _mm256_insertf128_ps(combined_floats, as_float_2, 1);
 
+  // The floats are currently in the range [1, 2) so subtract one
   const __m256 ones = _mm256_set1_ps(1.0f);
-
   __m256 floats_simd = _mm256_sub_ps(combined_floats, ones);
 
-
-  uint64_t u64s_1[4];
-  uint64_t u64s_2[4];
-
-  // we often can't use 0: check for zeroes
+  // Normal generation depends on uniform values being non-zero
   __m256 zero_mask = _mm256_cmp_ps(floats_simd, _mm256_setzero_ps(), _CMP_EQ_OQ);
 
+  // ...so if we get a zero replace with float min
   const __m256 float_mins = _mm256_set1_ps(std::numeric_limits<float>::min());
 
   floats_simd = _mm256_blendv_ps(floats_simd, float_mins, zero_mask);
@@ -151,6 +162,42 @@ __m256 Rng::uniform_simd() const {
 
 }
 
+__m256 Rng::uniform_simd_one_vec() const {
+
+  /* This function performs some bit manipulation to turn two vectors of 4 64 bit ints
+   * to one vector of 8 32 bit floats
+   * 1. 
+   * 
+   */ 
+
+  // These each contain 4 u64s
+  __m256i rand_u64s = advance_state();
+
+
+  // Get top 24 bits to be the mantissa for the final float
+  __m256i shifted = _mm256_srli_epi32(rand_u64s, 8);
+
+
+  const __m256i mask = _mm256_set1_epi32(0x3F800000);
+    
+  // 4. Combine the random bits (mantissa) with the mask (exponent/sign).
+  __m256i float_bits = _mm256_or_si256(shifted, mask);
+
+  // 5. Reinterpret the integer bits as floats. The values are now in [1.0, 2.0).
+  __m256 floats = _mm256_castsi256_ps(float_bits);
+
+  // 6. Subtract 1.0 to shift the range from [1.0, 2.0) to [0.0, 1.0).
+  const __m256 ones = _mm256_set1_ps(1.0f);
+  __m256 floats_simd = _mm256_sub_ps(floats, ones);
+
+  // 7. Replace any 0.0f results with a very small positive number.
+  __m256 zero_mask = _mm256_cmp_ps(floats_simd, _mm256_setzero_ps(), _CMP_EQ_OQ);
+  const __m256 float_mins = _mm256_set1_ps(std::numeric_limits<float>::min());
+  floats_simd = _mm256_blendv_ps(floats_simd, float_mins, zero_mask);
+
+  return floats_simd;
+
+}
 __m256 Rng::normal(const params::NormalMethod method) const {
   switch(method) {
     case(params::NormalMethod::BoxMuller) : return box_muller_transform();
@@ -169,8 +216,8 @@ __m256 Rng::box_muller_transform() const {
   // implementation of Box-Muller transform
   // https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform
 
-  __m256 U1 = uniform_simd();
-  __m256 U2 = uniform_simd();
+  __m256 U1 = uniform_simd_one_vec();
+  __m256 U2 = uniform_simd_one_vec();
 
   __m256 pi = _mm256_set1_ps(M_PI);
 

@@ -51,6 +51,17 @@ static void BM_Uniform_SIMD(benchmark::State& state) {
 
 }
 BENCHMARK(BM_Uniform_SIMD);
+static void BM_Uniform_SIMD_OneVec(benchmark::State& state) {
+  simdmonte::Rng helper{};
+
+  for (auto _: state) {
+    __m256 result = helper.uniform_simd();
+    benchmark::DoNotOptimize(result);
+  }
+
+
+}
+BENCHMARK(BM_Uniform_SIMD_OneVec);
 
 static void BM_STL_Normal(benchmark::State& state) {
   std::mt19937 gen(std::random_device{}());
