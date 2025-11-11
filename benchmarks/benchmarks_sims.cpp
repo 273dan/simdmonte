@@ -21,7 +21,7 @@ static void BM_Asian100M(benchmark::State& state) {
   std::unique_ptr<Option> option =
     std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Call, AsianOption::StrikeType::Fixed, 0.25f);
 
-  MCPricer pricer{params};
+  Pricer pricer{params};
 
   for(auto _ : state) {
     double price = pricer.price(*option, market);
@@ -48,7 +48,7 @@ static void BM_Asian1B(benchmark::State& state) {
   std::unique_ptr<Option> option =
     std::make_unique<AsianOption>(strike, expiry, AsianOption::OptionType::Call, AsianOption::StrikeType::Fixed, 0.25f);
 
-  MCPricer pricer{params};
+  Pricer pricer{params};
 
   for(auto _ : state) {
     double price = pricer.price(*option, market);

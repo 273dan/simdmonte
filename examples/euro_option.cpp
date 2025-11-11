@@ -35,7 +35,7 @@ int main() {
 
   };
 
-  MCPricer pricer{params};
+  Pricer pricer{params};
 
   // Our European option...
   float strike = 100.0f;                               // has a strike of 100,

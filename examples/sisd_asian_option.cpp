@@ -22,7 +22,7 @@ int main() {
   MarketData market{100.0f, 0.05f, 0.20f};
   Params params{252, 100'000, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller};
   AsianOption option{100.0f, 1.0f, AsianOption::OptionType::Call,AsianOption::StrikeType::Fixed, 1.0f};
-  MCPricerSISD pricer{params};
+  PricerSISD pricer{params};
 
   float price = pricer.price(option, market);
   printf("%f\n", price);

@@ -24,7 +24,7 @@ static void BM_SISD_Asian_Performance(benchmark::State& state) {
   };
 
   AsianOption option{100.0, 1.0, simdmonte::AsianOption::OptionType::Call, simdmonte::AsianOption::StrikeType::Fixed, 0.5f};
-  MCPricerSISD pricer{bm_params};
+  PricerSISD pricer{bm_params};
 
   for(auto _: state) {
     float price = pricer.price(option, market);

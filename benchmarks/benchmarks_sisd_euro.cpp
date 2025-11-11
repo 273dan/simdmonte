@@ -24,7 +24,7 @@ static void BM_SISD_Euro_Performance(benchmark::State& state) {
   };
 
   EuropeanOption option{100.0, 1.0, simdmonte::EuropeanOption::OptionType::Call};
-  MCPricerSISD pricer{bm_params};
+  PricerSISD pricer{bm_params};
 
   for(auto _: state) {
     float price = pricer.price(option, market);

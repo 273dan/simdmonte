@@ -29,7 +29,7 @@ public:
   MarketData market;
   Params params;
   std::unique_ptr<Option> option;
-  MCPricer pricer;
+  Pricer pricer;
   const EuropeanTestCase& tp = GetParam();
   EuropeanTest() {}
 
@@ -37,7 +37,7 @@ public:
     market = MarketData{tp.spot, tp.risk_free_rate, tp.volatility};
     params = Params{1, TEST_SIMS, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller};
     option = std::make_unique<EuropeanOption>(tp.strike, tp.expiry, tp.side);
-    pricer = MCPricer{params};
+    pricer = Pricer{params};
   }
 
 

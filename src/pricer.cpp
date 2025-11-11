@@ -13,11 +13,11 @@ namespace simdmonte {
 
 
 
-MCPricer::MCPricer(Params params) :
+Pricer::Pricer(Params params) :
   params_(params), n_steps_(params.n_steps), n_sims_(params.n_sims) {};
 
 
-float MCPricer::price(const Option& option, const MarketData& market) const {
+float Pricer::price(const Option& option, const MarketData& market) const {
   // Thread management
   unsigned int n_threads = std::thread::hardware_concurrency();
   n_threads = n_threads == 0 ? 1 : n_threads;

@@ -26,7 +26,7 @@ public:
   MarketData market;
   Params params;
   EuropeanOption option;
-  MCPricerSISD pricer;
+  PricerSISD pricer;
   const SISDEuropeanTestCase& tp = GetParam();
   SISDEuropeanTest() {}
 
@@ -34,7 +34,7 @@ public:
     market = MarketData{tp.spot, tp.risk_free_rate, tp.volatility};
     params = Params{1, TEST_SIMS, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller};
     option = EuropeanOption{tp.strike, tp.expiry, tp.side};
-    pricer = MCPricerSISD{params};
+    pricer = PricerSISD{params};
   }
 
 

@@ -26,7 +26,7 @@ static void BM_Asian_Performance(benchmark::State& state) {
   std::unique_ptr<simdmonte::Option> option =
     std::make_unique<simdmonte::AsianOption>(100.0, 1.0, simdmonte::AsianOption::OptionType::Call, simdmonte::AsianOption::StrikeType::Fixed, 0.5f);
 
-  MCPricer pricer{bm_params};
+  Pricer pricer{bm_params};
 
   for(auto _: state) {
     float price = pricer.price(*option, market);

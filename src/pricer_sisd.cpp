@@ -7,9 +7,9 @@
 
 namespace simdmonte {
 
-MCPricerSISD::MCPricerSISD(Params params) : n_sims_(params.n_sims), n_steps_(params.n_steps), params_(params) {}
+PricerSISD::PricerSISD(Params params) : n_sims_(params.n_sims), n_steps_(params.n_steps), params_(params) {}
 
-float MCPricerSISD::price(const EuropeanOption& option, const MarketData& market) const {
+float PricerSISD::price(const EuropeanOption& option, const MarketData& market) const {
   // We will use GBM for this implementation, so n_steps is 1
   double sum = 0.0;
   float dt = option.expiry;
@@ -35,7 +35,7 @@ float MCPricerSISD::price(const EuropeanOption& option, const MarketData& market
   float average = sum / static_cast<float>(n_sims_);
   return average * std::exp(-market.risk_free_rate * option.expiry);
 }
-float MCPricerSISD::price(const AsianOption& option, const MarketData& market) const {
+float PricerSISD::price(const AsianOption& option, const MarketData& market) const {
   // Set up variables which are constant across all simulations
   const float dt = option.expiry / static_cast<float>(n_steps_);
   const float vol_dt = market.volatility * std::sqrt(dt);

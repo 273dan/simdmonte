@@ -7,7 +7,7 @@
 /*  -- TEST BOILERPLATE --  */
 using namespace simdmonte;
 const static long TEST_SIMS = 1e6;
-const static int TEST_STEPS = 252; // TODO: Move this into test params to test different steps
+const static int TEST_STEPS = 252;
 
 struct SISDAsianTestCase {
   std::string name;
@@ -26,7 +26,7 @@ public:
   MarketData market;
   Params params;
   AsianOption option;
-  MCPricerSISD pricer;
+  PricerSISD pricer;
   const SISDAsianTestCase& tp = GetParam();
   SISDAsianTest() {}
 
@@ -34,7 +34,7 @@ public:
     market = MarketData{tp.spot, tp.risk_free_rate, tp.volatility};
     params = Params{TEST_STEPS, TEST_SIMS, params::UnderlyingModel::GBM, params::NormalMethod::BoxMuller};
     option = AsianOption{tp.strike, tp.expiry, tp.option_type, tp.strike_type, tp.avg_period};
-    pricer = MCPricerSISD{params};
+    pricer = PricerSISD{params};
   }
 
 
