@@ -66,8 +66,8 @@ TEST(RngTests, BoxMullerNormalSeeding) {
   float arr1[8], arr2[8];
 
   for(int i = 0; i < 1000000; i++) {
-    __m256 floats1 = rng1.normal(Rng::NormalMethod::BoxMuller);
-    __m256 floats2 = rng2.normal(Rng::NormalMethod::BoxMuller);
+    __m256 floats1 = rng1.normal(params::NormalMethod::BoxMuller);
+    __m256 floats2 = rng2.normal(params::NormalMethod::BoxMuller);
 
     _mm256_storeu_ps(arr1, floats1);
     _mm256_storeu_ps(arr2, floats2);
@@ -85,7 +85,7 @@ TEST(RngTests, BoxMullerNormalMean) {
   const int total_floats = 8 * n_calls;
 
   for(int i = 0; i < n_calls; i++) {
-    __m256 floats = rng.normal(Rng::NormalMethod::BoxMuller);
+    __m256 floats = rng.normal(params::NormalMethod::BoxMuller);
     _mm256_storeu_ps(arr, floats);
     for(auto j: arr) total += j;
   }
@@ -101,8 +101,8 @@ TEST(RngTests, InverseCDFNormalSeeding) {
   float arr1[8], arr2[8];
 
   for(int i = 0; i < 100000; i++) {
-    __m256 floats1 = rng1.normal(Rng::NormalMethod::InverseCDF);
-    __m256 floats2 = rng2.normal(Rng::NormalMethod::InverseCDF);
+    __m256 floats1 = rng1.normal(params::NormalMethod::InverseCDF);
+    __m256 floats2 = rng2.normal(params::NormalMethod::InverseCDF);
 
     _mm256_storeu_ps(arr1, floats1);
     _mm256_storeu_ps(arr2, floats2);
@@ -120,7 +120,7 @@ TEST(RngTests, InverseCDFNormalMean) {
   const int total_floats = 8 * n_calls;
 
   for(int i = 0; i < n_calls; i++) {
-    __m256 floats = rng.normal(Rng::NormalMethod::InverseCDF);
+    __m256 floats = rng.normal(params::NormalMethod::InverseCDF);
     _mm256_storeu_ps(arr, floats);
     for(auto j: arr) total += j;
   }

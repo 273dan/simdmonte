@@ -1,15 +1,17 @@
 #pragma once
 #include "simdmonte/option/option.h"
-#include <vector>
+#include <memory>
 namespace simdmonte {
-
 
 class EuropeanOption : public Option {
 public:
   enum class OptionType { Call, Put };
   OptionType type;
   EuropeanOption(float K, float T, OptionType type);
-  virtual float payoff(const std::vector<float>& path) const override;
-  virtual std::unique_ptr<IAccumulator> get_accumulator() const override;
+  virtual std::unique_ptr<IAccumulator>
+  get_accumulator(const Params &params) const override;
+
+  // FOR GTEST ONLY
+  EuropeanOption() {}
 };
-}
+} // namespace simdmonte
