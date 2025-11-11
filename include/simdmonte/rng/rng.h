@@ -1,12 +1,11 @@
 #pragma once
-#include <immintrin.h>
-#include <cstdint>
 #include "simdmonte/pricer/params.h"
+#include <cstdint>
+#include <immintrin.h>
 namespace simdmonte {
 
-
-
-// const functions and mutable members are required to keep pricer functions const
+// const functions and mutable members are required to keep pricer functions
+// const
 class Rng {
 public:
   Rng();
@@ -25,8 +24,5 @@ private:
 
   __m256 inverse_cdf_approx() const;
   __m256 vec_u64_to_float() const;
-
-
-
 };
-}
+} // namespace simdmonte

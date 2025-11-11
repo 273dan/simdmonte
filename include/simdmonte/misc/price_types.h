@@ -16,4 +16,4 @@ inline PriceSpaceVec to_price_space(LogSpaceVec l) {
 inline LogSpaceVec to_log_space(PriceSpaceVec p) {
   return LogSpaceVec{log256_ps(p.value)};
 }
-}
+} // namespace simdmonte

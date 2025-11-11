@@ -3,15 +3,17 @@
 namespace simdmonte {
 class AsianOption : public Option {
 public:
-  enum class OptionType {Call, Put};
-  enum class StrikeType {Fixed, Floating};
+  enum class OptionType { Call, Put };
+  enum class StrikeType { Fixed, Floating };
   OptionType option_type;
   StrikeType strike_type;
   float avg_period; // year decimal: 1.0 = 1 year
-  AsianOption(float K, float T, OptionType o_type, StrikeType s_type, float avg_p);
-  virtual std::unique_ptr<IAccumulator> get_accumulator(const Params& params) const override;
+  AsianOption(float K, float T, OptionType o_type, StrikeType s_type,
+              float avg_p);
+  virtual std::unique_ptr<IAccumulator>
+  get_accumulator(const Params &params) const override;
 
   /* FOR GTEST ONLY */
   AsianOption() {};
 };
-}
+} // namespace simdmonte

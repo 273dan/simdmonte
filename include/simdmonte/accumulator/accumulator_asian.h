@@ -7,12 +7,12 @@ namespace simdmonte {
 
 class AsianAccumulator : public IAccumulator {
 public:
-  virtual void update(const LogSpaceVec&) override;
-  virtual void update(const PriceSpaceVec&) override;
+  virtual void update(const LogSpaceVec &) override;
+  virtual void update(const PriceSpaceVec &) override;
   virtual __m256 payoffs() override;
   virtual void reset() override;
-  AsianAccumulator(float strike, AsianOption::OptionType o_type, AsianOption::StrikeType s_type, int avg_start);
-
+  AsianAccumulator(float strike, AsianOption::OptionType o_type,
+                   AsianOption::StrikeType s_type, int avg_start);
 
 private:
   __m256 avg_;
@@ -26,8 +26,6 @@ private:
   AsianOption::OptionType option_type_;
   AsianOption::StrikeType strike_type_;
 
-  void accumulate(const PriceSpaceVec& prices);
-
+  void accumulate(const PriceSpaceVec &prices);
 };
 } // namespace simdmonte
-

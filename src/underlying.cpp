@@ -3,5 +3,4 @@ namespace simdmonte {
 
 IUnderlying::~IUnderlying() = default;
 
-
-} // namespace simdmonte 
+} // namespace simdmonte

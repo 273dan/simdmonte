@@ -1,0 +1,6 @@
+BasedOnStyle: Google
+IndentWidth: 2
+BreakBeforeBraces: Attach
+PointerAlignment: Left
+ColumnLimit: 0
+SortIncludes: true
