@@ -4,13 +4,19 @@
 - [Key Features](#key-features) 
 - [Performance](#performance)
 - [Design](#design)
+    * [Pricer](#pricer)
+    * [Option](#option)
+    * [Accumulator](#accumulator)
+    * [Underlying](#underlying)
+    * [Rng](#rng)
+    * [Misc](#misc)
 - [Getting Started](#getting-started)
     * [Prerequisites](#prerequisites)
     * [Build](#build)
     * [Examples](#examples)
     * [Testing and Benchmarking](#testing-and-benchmarking)
-- Future Work
-- References and Credits
+- [Future Work](#future-work)
+- [References and Credits](#references-and-credits)
 
 ## Overview
 simdmonte is a library for pricing vanilla and exotic options, currently supporting European and Asian options. The primary motivation for building this is to better understand the applications of SIMD and concurrency in C++. I also wanted to target exotic options - where simulation techniques are most suitable for pricing.
@@ -100,6 +106,11 @@ To benchmark, run `build/benchmarks/benchmarks`. The benchmarks compare custom r
 ## Future Work
 - Implement additional option types (Barrier, American etc.)
 - Support other simulation models (Heston, SABR etc.)
+## References and Credits
+- [Xorshift128+](https://en.wikipedia.org/wiki/Xorshift)
+- [Box-Muller Transform](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform)
+- [Acklam's normal approximation](https://stackedboxes.org/2017/05/01/acklams-normal-quantile-function/)
+- [avx_mathfun.h](https://github.com/reyoung/avx_mathfun)
 
 
 
