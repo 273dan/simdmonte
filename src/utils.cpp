@@ -1,7 +1,9 @@
 #include "simdmonte/misc/utils.h"
+
+#include <immintrin.h>
+
 #include <cstdint>
 #include <cstring>
-#include <immintrin.h>
 #include <iostream>
 
 namespace simdmonte {
@@ -13,7 +15,6 @@ void debug_256(__m256 vec) {
 
   std::cout << "{ ";
   for (auto i : array) {
-
     std::cout << i << " ";
   }
   std::cout << "}\n";
@@ -32,4 +33,4 @@ float u64_to_float(uint64_t n) {
 
   return result;
 };
-} // namespace simdmonte
+}  // namespace simdmonte

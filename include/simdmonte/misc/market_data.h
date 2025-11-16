@@ -9,4 +9,4 @@ struct MarketData {
   MarketData(float s, float r, float v)
       : spot(s), risk_free_rate(r), volatility(v) {}
 };
-} // namespace simdmonte
+}  // namespace simdmonte

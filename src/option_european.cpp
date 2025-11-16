@@ -1,15 +1,17 @@
 #include "simdmonte/option/option_european.h"
+
+#include <cmath>
+
 #include "simdmonte/accumulator/accumulator_european.h"
 #include "simdmonte/option/option.h"
-#include <cmath>
 namespace simdmonte {
 
 EuropeanOption::EuropeanOption(float K, float T, OptionType type)
     : Option(K, T), type(type) {};
 
 std::unique_ptr<IAccumulator>
-EuropeanOption::get_accumulator(const Params &params) const {
+EuropeanOption::get_accumulator(const Params& params) const {
   (void)params;
   return std::make_unique<EuropeanAccumulator>(strike, type);
 }
-} // namespace simdmonte
+}  // namespace simdmonte

@@ -1,28 +1,29 @@
 #include "simdmonte/pricer/pricer.h"
+
+#include <immintrin.h>
+
+#include <cmath>
+#include <numeric>
+#include <thread>
+#include <vector>
+
 #include "simdmonte/misc/utils.h"
 #include "simdmonte/pricer/params.h"
 #include "simdmonte/underlying/underlying.h"
 #include "simdmonte/underlying/underlying_factory.h"
-#include <cmath>
-#include <immintrin.h>
-#include <numeric>
-#include <thread>
-#include <vector>
 namespace simdmonte {
 
 Pricer::Pricer(Params params)
     : params_(params), n_steps_(params.n_steps), n_sims_(params.n_sims) {};
 
-float Pricer::price(const Option &option, const MarketData &market) const {
+float Pricer::price(const Option& option, const MarketData& market) const {
   // Thread management
   unsigned int n_threads = std::thread::hardware_concurrency();
   n_threads = n_threads == 0 ? 1 : n_threads;
 
   int total_calls = (n_sims_ + 7) / 8;
 
-  int per_thread =
-      total_calls /
-      n_threads; // Ensure that we do the exact number of simulations specified
+  int per_thread = total_calls /n_threads;  // Ensure that we do the exact number of simulations specified
   int remainder = total_calls % n_threads;
 
   std::vector<std::thread> threads{};
@@ -44,12 +45,12 @@ float Pricer::price(const Option &option, const MarketData &market) const {
 
       for (int sim = 0; sim < thread_calls; sim++) {
         underlying->set_current(
-            std::log(market.spot)); // Set the starting price for the underlying
+            std::log(market.spot));  // Set the starting price for the underlying
 
         for (int step = 0; step < n_steps_; step++) {
           accumulator->update(
-              underlying->step()); // Step forward and inform accumulator of the
-                                   // new price
+              underlying->step());  // Step forward and inform accumulator of the
+                                    // new price
         }
         __m256 payoffs = accumulator->payoffs();
         float payoffs_arr[8];
@@ -57,15 +58,15 @@ float Pricer::price(const Option &option, const MarketData &market) const {
         for (auto p : payoffs_arr) {
           sum_payoffs += p;
         }
-        accumulator->reset(); // Make sure that path-dependent variables are
-                              // reset before the next simulation
+        accumulator->reset();  // Make sure that path-dependent variables are
+                               // reset before the next simulation
       }
 
       payoff_sums[i] = sum_payoffs;
     });
   }
 
-  for (auto &thread : threads) {
+  for (auto& thread : threads) {
     if (thread.joinable())
       thread.join();
   }
@@ -77,4 +78,4 @@ float Pricer::price(const Option &option, const MarketData &market) const {
       average_payoff * std::exp(-market.risk_free_rate * option.expiry);
   return discounted;
 }
-} // namespace simdmonte
+}  // namespace simdmonte

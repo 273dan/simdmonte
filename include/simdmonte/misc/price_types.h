@@ -1,6 +1,7 @@
 #pragma once
-#include "simdmonte/avx_mathfun_wrapper.h"
 #include <immintrin.h>
+
+#include "simdmonte/avx_mathfun_wrapper.h"
 namespace simdmonte {
 struct LogSpaceVec {
   __m256 value;
@@ -16,4 +17,4 @@ inline PriceSpaceVec to_price_space(LogSpaceVec l) {
 inline LogSpaceVec to_log_space(PriceSpaceVec p) {
   return LogSpaceVec{log256_ps(p.value)};
 }
-} // namespace simdmonte
+}  // namespace simdmonte

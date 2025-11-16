@@ -1,12 +1,15 @@
 #include "simdmonte/underlying/underlying_gbmlog.h"
-#include "simdmonte/rng/rng.h"
-#include <cmath>
+
 #include <immintrin.h>
+
+#include <cmath>
+
+#include "simdmonte/rng/rng.h"
 namespace simdmonte {
 
-GBMLogUnderlying::GBMLogUnderlying(const Option &option,
-                                   const MarketData &market,
-                                   const Params &params)
+GBMLogUnderlying::GBMLogUnderlying(const Option& option,
+                                   const MarketData& market,
+                                   const Params& params)
     : dt_(option.expiry / static_cast<float>(params.n_steps)),
       rng_(params.seed == 0 ? Rng() : Rng(params.seed)),
       current_(_mm256_set1_ps(std::log(market.spot))),
@@ -28,4 +31,4 @@ void GBMLogUnderlying::set_current(float prices) {
   current_ = _mm256_set1_ps(prices);
 }
 
-} // namespace simdmonte
+}  // namespace simdmonte

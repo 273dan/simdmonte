@@ -6,14 +6,14 @@
 namespace simdmonte {
 
 class Pricer {
-public:
-  float price(const Option &option, const MarketData &market) const;
+ public:
+  float price(const Option& option, const MarketData& market) const;
   Pricer(Params params_);
   Pricer() = default;
 
-private:
+ private:
   long n_sims_;
   int n_steps_;
   Params params_;
 };
-} // namespace simdmonte
+}  // namespace simdmonte

@@ -64,5 +64,5 @@ static inline __m256 D2 = _mm256_set1_ps(d2);
 static inline __m256 D3 = _mm256_set1_ps(d3);
 static inline __m256 D4 = _mm256_set1_ps(d4);
 
-} // namespace constants
-} // namespace simdmonte
+}  // namespace constants
+}  // namespace simdmonte

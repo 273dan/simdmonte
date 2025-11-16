@@ -1,12 +1,15 @@
 #include "simdmonte/rng/rng.h"
+
+#include <immintrin.h>
+
+#include <cmath>
+#include <cstring>
+#include <random>
+#include <stdexcept>
+
 #include "simdmonte/avx_mathfun_wrapper.h"
 #include "simdmonte/misc/utils.h"
 #include "simdmonte/rng/rng_constants.h"
-#include <cmath>
-#include <cstring>
-#include <immintrin.h>
-#include <random>
-#include <stdexcept>
 
 namespace simdmonte {
 
@@ -23,7 +26,6 @@ Rng::Rng() {
   uint64_t seeds1[4];
 
   for (int i = 0; i < 4; i++) {
-
     seeds0[i] = rd() | (static_cast<uint64_t>(rd()) << 32);
     seeds1[i] = rd() | (static_cast<uint64_t>(rd()) << 32);
 
@@ -33,8 +35,8 @@ Rng::Rng() {
       seeds1[i] = 1;
   }
 
-  state0_ = _mm256_loadu_si256((__m256i *)seeds0);
-  state1_ = _mm256_loadu_si256((__m256i *)seeds1);
+  state0_ = _mm256_loadu_si256((__m256i*)seeds0);
+  state1_ = _mm256_loadu_si256((__m256i*)seeds1);
 }
 
 Rng::Rng(uint64_t seed) {
@@ -47,12 +49,11 @@ Rng::Rng(uint64_t seed) {
     if (seeds1[i] == 0)
       seeds1[i] = 1;
   }
-  state0_ = _mm256_loadu_si256((__m256i *)seeds0);
-  state1_ = _mm256_loadu_si256((__m256i *)seeds1);
+  state0_ = _mm256_loadu_si256((__m256i*)seeds0);
+  state1_ = _mm256_loadu_si256((__m256i*)seeds1);
 }
 
 __m256i Rng::advance_state() const {
-
   /*
    * This is an implementation of Xorshift128+, an extremely fast random number
    * generation algorithm that uses a series of bitshifts and XORs
@@ -79,7 +80,6 @@ __m256i Rng::advance_state() const {
 }
 
 __m256 Rng::uniform() const {
-
   /* This function performs some bit manipulation to turn a vector of 4 64-bit
    * ints into a vector of 8 32-bit floats
    *
@@ -115,22 +115,20 @@ __m256 Rng::uniform() const {
   return floats_simd;
 }
 __m256 Rng::normal(const params::NormalMethod method) const {
-
   /*
    * Redirects to the normal generation function corresponing to the enum value
    */
 
   switch (method) {
-  case (params::NormalMethod::BoxMuller):
-    return box_muller_transform();
-  case (params::NormalMethod::InverseCDF):
-    return inverse_cdf_approx();
+    case (params::NormalMethod::BoxMuller):
+      return box_muller_transform();
+    case (params::NormalMethod::InverseCDF):
+      return inverse_cdf_approx();
   }
   throw std::invalid_argument("Unknown normal method");
 }
 
 __m256 Rng::box_muller_transform() const {
-
   /*
    * This is an implementation of the Box-Muller transform
    * https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform
@@ -168,7 +166,6 @@ __m256 Rng::box_muller_transform() const {
 }
 
 __m256 Rng::inverse_cdf_approx() const {
-
   /*
    * This is an implementation of the Box-Muller transform
    * https://stackedboxes.org/2017/05/01/acklams-normal-quantile-function/
@@ -238,4 +235,4 @@ __m256 Rng::inverse_cdf_approx() const {
 
   return z;
 }
-} // namespace simdmonte
+}  // namespace simdmonte

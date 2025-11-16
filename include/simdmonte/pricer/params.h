@@ -3,9 +3,10 @@
 namespace simdmonte {
 namespace params {
 enum class UnderlyingModel { GBM };
-enum class NormalMethod { BoxMuller, InverseCDF };
+enum class NormalMethod { BoxMuller,
+                          InverseCDF };
 
-} // namespace params
+}  // namespace params
 
 struct Params {
   int n_steps;
@@ -17,8 +18,7 @@ struct Params {
   Params() {};
   Params(int n_steps_, long n_sims_, params::UnderlyingModel underlying_model_,
          params::NormalMethod normal_method_)
-      : n_steps(n_steps_), n_sims(n_sims_), underlying_model(underlying_model_),
-        normal_method(normal_method_) {};
+      : n_steps(n_steps_), n_sims(n_sims_), underlying_model(underlying_model_), normal_method(normal_method_) {};
 };
 
-} // namespace simdmonte
+}  // namespace simdmonte

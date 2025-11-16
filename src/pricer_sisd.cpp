@@ -1,17 +1,19 @@
 #include "simdmonte/pricer/pricer_sisd.h"
+
+#include <cmath>
+#include <random>
+
 #include "simdmonte/option/option_asian.h"
 #include "simdmonte/option/option_european.h"
 #include "simdmonte/pricer/params.h"
-#include <cmath>
-#include <random>
 
 namespace simdmonte {
 
 PricerSISD::PricerSISD(Params params)
     : n_sims_(params.n_sims), n_steps_(params.n_steps), params_(params) {}
 
-float PricerSISD::price(const EuropeanOption &option,
-                        const MarketData &market) const {
+float PricerSISD::price(const EuropeanOption& option,
+                        const MarketData& market) const {
   // We will use GBM for this implementation, so n_steps is 1
   double sum = 0.0;
   float dt = option.expiry;
@@ -38,8 +40,8 @@ float PricerSISD::price(const EuropeanOption &option,
   float average = sum / static_cast<float>(n_sims_);
   return average * std::exp(-market.risk_free_rate * option.expiry);
 }
-float PricerSISD::price(const AsianOption &option,
-                        const MarketData &market) const {
+float PricerSISD::price(const AsianOption& option,
+                        const MarketData& market) const {
   // Set up variables which are constant across all simulations
   const float dt = option.expiry / static_cast<float>(n_steps_);
   const float vol_dt = market.volatility * std::sqrt(dt);
@@ -53,7 +55,6 @@ float PricerSISD::price(const AsianOption &option,
   float payoff_total{0.0f};
 
   for (int i = 0; i < n_sims_; i++) {
-
     // Set up per-simulation variables
     int steps_priced{0};
     float current{market.spot};
@@ -94,4 +95,4 @@ float PricerSISD::price(const AsianOption &option,
 
   return average_payoff * std::exp(-market.risk_free_rate * option.expiry);
 }
-} // namespace simdmonte
+}  // namespace simdmonte
